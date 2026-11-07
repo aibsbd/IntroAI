@@ -1,0 +1,2171 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>কৃত্রিম বুদ্ধিমত্তার পরিচয় (Intro to AI) — Seerat Academy Foundation</title>
+  <meta name="author" content="Ihtishamul Haque Naeem, Chairman, Seerat Academy Foundation">
+  <meta name="publisher" content="Seerat Academy Foundation">
+  <meta name="description" content="কৃত্রিম বুদ্ধিমত্তার পরিচয় (Intro to AI) — আধুনিক এআই, নিউরাল নেটওয়ার্ক, লার্জ ল্যাঙ্গুয়েজ মডেল, প্রম্পট ডিজাইন এবং দায়িত্বশীল ব্যবহারের পূর্ণাঙ্গ ইন্টারঅ্যাকটিভ বাংলা ই-বুক।">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0f2537;
+      --royal: #1d4ed8;
+      --teal: #0d9488;
+      --gold: #d97706;
+      --gold-light: #fef3c7;
+      --bg-light: #f8fafc;
+      --surface: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #475569;
+      --border: #e2e8f0;
+      --success: #15803d;
+      --success-bg: #dcfce7;
+      --danger: #b91c1c;
+      --danger-bg: #fee2e2;
+      --radius: 12px;
+      --shadow: 0 4px 20px rgba(15, 37, 55, 0.07);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Hind Siliguri', 'Inter', sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-main);
+      line-height: 1.75;
+      font-size: 17px;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar Navigation */
+    .sidebar {
+      width: 310px;
+      background: var(--navy);
+      color: #fff;
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      overflow-y: auto;
+      padding: 24px 18px;
+      z-index: 1000;
+      transition: transform 0.3s ease;
+    }
+    .brand-box {
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+      padding-bottom: 16px;
+      margin-bottom: 16px;
+    }
+    .brand-tag {
+      display: inline-block;
+      background: var(--gold);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+    }
+    .brand-title {
+      font-size: 19px;
+      font-weight: 700;
+      line-height: 1.35;
+      color: #fff;
+    }
+    .brand-sub {
+      font-size: 12.5px;
+      color: #cbd5e1;
+      margin-top: 4px;
+    }
+    .progress-box {
+      background: rgba(255,255,255,0.08);
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12.5px;
+      margin-bottom: 6px;
+      color: #e2e8f0;
+    }
+    .progress-bar-bg {
+      height: 8px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--teal), #34d399);
+      transition: width 0.3s ease;
+    }
+    .search-box input {
+      width: 100%;
+      padding: 9px 12px;
+      border-radius: 6px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      font-family: inherit;
+      font-size: 14px;
+      margin-bottom: 14px;
+    }
+    .search-box input::placeholder { color: #94a3b8; }
+    .nav-list { list-style: none; }
+    .nav-list li { margin-bottom: 4px; }
+    .nav-list a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #cbd5e1;
+      text-decoration: none;
+      padding: 9px 12px;
+      border-radius: 6px;
+      font-size: 14.5px;
+      transition: all 0.2s;
+    }
+    .nav-list a:hover, .nav-list a.active {
+      background: rgba(255,255,255,0.14);
+      color: #fff;
+      font-weight: 600;
+    }
+    .check-badge {
+      font-size: 12px;
+      color: #34d399;
+      display: none;
+    }
+    .check-badge.done { display: inline; }
+
+    /* Mobile Header */
+    .mobile-topbar {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 56px;
+      background: var(--navy);
+      color: #fff;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      z-index: 1001;
+    }
+    .menu-btn {
+      background: var(--royal);
+      color: #fff;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    /* Main Content Area */
+    .main-content {
+      margin-left: 310px;
+      flex: 1;
+      max-width: 960px;
+      padding: 40px 48px 80px;
+    }
+
+    /* Cover Card */
+    .cover-hero {
+      background: linear-gradient(135deg, var(--navy) 0%, #1e3a8a 60%, var(--teal) 100%);
+      color: #fff;
+      padding: 48px 40px;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      margin-bottom: 36px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cover-badge {
+      display: inline-block;
+      background: rgba(217, 119, 6, 0.9);
+      color: #fff;
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    .cover-hero h1 {
+      font-size: 36px;
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+    .cover-hero h2 {
+      font-size: 19px;
+      font-weight: 400;
+      color: #e2e8f0;
+      margin-bottom: 28px;
+    }
+    .author-credit-box {
+      background: rgba(255,255,255,0.12);
+      border-left: 4px solid var(--gold);
+      padding: 16px 20px;
+      border-radius: 8px;
+      backdrop-filter: blur(6px);
+    }
+    .author-credit-box p { margin: 2px 0; font-size: 15px; }
+    .author-credit-box a { color: #fde68a; text-decoration: underline; }
+
+    /* Sections & Cards */
+    .chapter-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 36px 40px;
+      margin-bottom: 36px;
+      border-top: 5px solid var(--royal);
+    }
+    .chapter-header {
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 18px;
+      margin-bottom: 24px;
+    }
+    .chapter-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .tag {
+      font-size: 12.5px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: #e0e7ff;
+      color: var(--royal);
+    }
+    .tag.teal { background: #ccfbf1; color: var(--teal); }
+    .tag.gold { background: var(--gold-light); color: #92400e; }
+
+    h2.ch-title {
+      font-size: 27px;
+      color: var(--navy);
+      line-height: 1.3;
+    }
+    h3.sec-title {
+      font-size: 20px;
+      color: var(--navy);
+      margin: 28px 0 12px;
+      padding-left: 12px;
+      border-left: 4px solid var(--teal);
+    }
+    h4.sub-title {
+      font-size: 17.5px;
+      color: var(--royal);
+      margin: 18px 0 8px;
+    }
+    p { margin-bottom: 14px; }
+    ul, ol { margin: 0 0 16px 24px; }
+    li { margin-bottom: 6px; }
+
+    /* Independence Disclaimer */
+    .disclaimer-quote {
+      background: #fffbeb;
+      border-left: 4px solid var(--gold);
+      padding: 12px 16px;
+      border-radius: 6px;
+      font-size: 14.5px;
+      color: #78350f;
+      margin-bottom: 20px;
+    }
+
+    /* Tables */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0 22px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 15.5px;
+    }
+    th {
+      background: var(--navy);
+      color: #fff;
+      text-align: left;
+      padding: 11px 14px;
+      font-weight: 600;
+    }
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tr:nth-child(even) td { background: #f8fafc; }
+
+    /* Code & Prompt Blocks */
+    .code-container {
+      background: #0f172a;
+      color: #f8fafc;
+      border-radius: 8px;
+      padding: 16px;
+      margin: 14px 0 18px;
+      position: relative;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      overflow-x: auto;
+    }
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.25);
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    .copy-btn:hover { background: var(--teal); }
+
+    /* Educational Callout Boxes */
+    .callout {
+      padding: 16px 20px;
+      border-radius: 8px;
+      margin: 18px 0;
+      border: 1px solid var(--border);
+    }
+    .callout.example {
+      background: #f0fdf4;
+      border-left: 4px solid var(--success);
+    }
+    .callout.formula {
+      background: #eff6ff;
+      border-left: 4px solid var(--royal);
+    }
+    .callout.supplement {
+      background: #f0fdfa;
+      border: 1px dashed var(--teal);
+    }
+    .callout-title {
+      font-weight: 700;
+      margin-bottom: 8px;
+      display: block;
+      color: var(--navy);
+    }
+
+    /* Interactive Calculators */
+    .calc-box {
+      background: #f8fafc;
+      border: 2px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 18px;
+      margin: 18px 0;
+    }
+    .calc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 10px;
+      margin: 12px 0;
+    }
+    .calc-grid label { font-size: 13px; font-weight: 600; display: block; }
+    .calc-grid input {
+      width: 100%;
+      padding: 7px;
+      border: 1px solid #94a3b8;
+      border-radius: 6px;
+      font-size: 15px;
+    }
+    .calc-result {
+      font-weight: 700;
+      color: var(--royal);
+      font-size: 17px;
+      margin-top: 8px;
+    }
+
+    /* Interactive Self-Assessment Accordion */
+    details.qa-item {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 10px;
+    }
+    details.qa-item summary {
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--navy);
+    }
+    details.qa-item p {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed var(--border);
+      color: var(--success);
+      font-weight: 500;
+    }
+
+    /* Interactive MCQ Quiz */
+    .quiz-box {
+      background: #fff;
+      border: 2px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+    .quiz-q { font-weight: 600; margin-bottom: 10px; }
+    .quiz-opt {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 10px 14px;
+      margin-bottom: 8px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: #f8fafc;
+      font-family: inherit;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .quiz-opt:hover { background: #e0e7ff; }
+    .quiz-opt.correct { background: var(--success-bg); border-color: var(--success); color: var(--success); font-weight: 600; }
+    .quiz-opt.wrong { background: var(--danger-bg); border-color: var(--danger); color: var(--danger); }
+    .quiz-feedback { font-size: 14.5px; margin-top: 8px; font-weight: 500; display: none; }
+
+    /* Chapter Complete Button */
+    .complete-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 28px;
+      padding-top: 18px;
+      border-top: 2px solid var(--border);
+    }
+    .btn-complete {
+      background: var(--teal);
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-complete.completed { background: var(--success); }
+
+    /* SVG Diagram Wrapper */
+    .diagram-box {
+      text-align: center;
+      margin: 20px 0;
+      padding: 16px;
+      background: #f8fafc;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    .diagram-caption {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 8px;
+    }
+
+    /* Responsive & Print */
+    @media (max-width: 900px) {
+      .sidebar { transform: translateX(-100%); }
+      .sidebar.open { transform: translateX(0); }
+      .mobile-topbar { display: flex; }
+      .main-content { margin-left: 0; padding: 76px 20px 50px; }
+      .chapter-card { padding: 24px 20px; }
+    }
+    @media print {
+      .sidebar, .mobile-topbar, .copy-btn, .btn-complete, .search-box { display: none !important; }
+      .main-content { margin-left: 0 !important; max-width: 100% !important; padding: 0 !important; }
+      .chapter-card { box-shadow: none !important; border: 1px solid #ccc !important; page-break-inside: avoid; }
+      details.qa-item { open: true; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Mobile Topbar -->
+  <div class="mobile-topbar">
+    <span><strong>কৃত্রিম বুদ্ধিমত্তার পরিচয়</strong> — Seerat Academy</span>
+    <button class="menu-btn" onclick="document.getElementById('sidebar').classList.toggle('open')">☰ সূচিপত্র</button>
+  </div>
+
+  <!-- Sidebar Navigation -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand-box">
+      <span class="brand-tag">Seerat Academy Foundation</span>
+      <div class="brand-title">কৃত্রিম বুদ্ধিমত্তার পরিচয় (Intro to AI)</div>
+      <div class="brand-sub">Written & Published by<br><strong>Ihtishamul Haque Naeem</strong></div>
+    </div>
+
+    <div class="progress-box">
+      <div class="progress-label">
+        <span>অধ্যয়ন অগ্রগতি (Progress)</span>
+        <span id="prog-text">0% (0/5)</span>
+      </div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="prog-fill"></div>
+      </div>
+    </div>
+
+    <div class="search-box">
+      <input type="text" id="book-search" placeholder="🔍 বিষয় বা শব্দ খুঁজুন..." oninput="filterSections(this.value)">
+    </div>
+
+    <ul class="nav-list">
+      <li><a href="#front-matter">📘 প্রচ্ছদ, মুখবন্ধ ও নির্দেশিকা</a></li>
+      <li><a href="#chapter-1">১. কৃত্রিম বুদ্ধিমত্তা কী? <span class="check-badge" id="badge-1">✔</span></a></li>
+      <li><a href="#chapter-2">২. নিউরাল নেটওয়ার্ক ও ডিপ লার্নিং <span class="check-badge" id="badge-2">✔</span></a></li>
+      <li><a href="#chapter-3">৩. জেনারেটিভ এআই ও LLM <span class="check-badge" id="badge-3">✔</span></a></li>
+      <li><a href="#chapter-4">৪. প্রম্পটিং ও কর্মক্ষেত্রে ব্যবহার <span class="check-badge" id="badge-4">✔</span></a></li>
+      <li><a href="#chapter-5">৫. এআই-এর ঝুঁকি ও দায়িত্বশীলতা <span class="check-badge" id="badge-5">✔</span></a></li>
+      <li><a href="#final-assessment">📝 চূড়ান্ত মূল্যায়ন (Final Quiz)</a></li>
+      <li><a href="#glossary">📖 পূর্ণাঙ্গ শব্দকোষ (Glossary)</a></li>
+      <li><a href="#publisher-info">🏛️ লেখক ও প্রকাশক পরিচিতি</a></li>
+    </ul>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+
+    <!-- COVER & FRONT MATTER -->
+    <section id="front-matter">
+      <div class="cover-hero">
+        <span class="cover-badge">Premium Interactive Bangla E-Book</span>
+        <h1>কৃত্রিম বুদ্ধিমত্তার পরিচয় (Intro to AI)</h1>
+        <h2>আধুনিক এআই, নিউরাল নেটওয়ার্ক, লার্জ ল্যাঙ্গুয়েজ মডেল, প্রম্পট ডিজাইন এবং দায়িত্বশীল ব্যবহারের পূর্ণাঙ্গ গাইড</h2>
+        <div class="author-credit-box">
+          <p><strong>Written and Published by</strong></p>
+          <p style="font-size:18px; font-weight:700; color:#fde68a;">Ihtishamul Haque Naeem</p>
+          <p>Chairman, Seerat Academy Foundation</p>
+          <p><strong>Publishing Platform:</strong> Seerat Academy Foundation | <strong>Website:</strong> <a href="https://seeratfoundation.com/" target="_blank" rel="noopener">https://seeratfoundation.com/</a></p>
+        </div>
+      </div>
+
+      <div class="chapter-card">
+        <div class="chapter-header">
+          <span class="tag gold">README & Course Overview</span>
+          <h2 class="ch-title">বই পরিচিতি, মূল উৎস বিবরণী এবং অধ্যয়ন নির্দেশিকা</h2>
+        </div>
+
+        <div class="disclaimer-quote">
+          <strong>স্বতন্ত্র নোট সংক্রান্ত মূল ঘোষণা (Original Independence Notice):</strong><br>
+          এই নোটগুলো সংশ্লিষ্ট কোর্স শিরোনামের বিষয়বস্তুকে কেন্দ্র করে সাধারণ বিষয়ভিত্তিক জ্ঞান থেকে রচিত। এগুলো <strong>365 Data Science কোর্সের নোট নয়</strong>। প্ল্যাটফর্মের কোনো লেসন, ভিডিও, ট্রান্সক্রিপ্ট, স্লাইড বা কুইজ ব্যবহার করা হয়নি এবং এই নোটগুলো উক্ত কোর্সে কী শেখানো হয় তা প্রদর্শন করে না।
+        </div>
+
+        <h3 class="sec-title">মূল নোটের তথ্য (Information from README.md)</h3>
+        <ul>
+          <li><strong>সংশ্লিষ্ট কোর্সের শিরোনাম (Related course title):</strong> Intro to AI</li>
+          <li><strong>পাবলিক কোর্স লিংক (Public course link):</strong> <a href="https://learn.365datascience.com/courses/intro-to-ai/" target="_blank" rel="noopener">https://learn.365datascience.com/courses/intro-to-ai/</a></li>
+          <li><strong>লাইব্রেরিতে তালিকাভুক্ত প্রশিক্ষক (Instructor listed in the library):</strong> Ned Krastev</li>
+          <li><strong>এই ফোল্ডারের মোট টপিক (Topics in this folder):</strong> 5 (৫টি অধ্যায়)</li>
+          <li><strong>মূল নোট রচনার তারিখ (Date written):</strong> 2026-11-05</li>
+          <li><strong>টপিক সংখ্যা (Topic count):</strong> স্বতন্ত্রভাবে নির্বাচিত, তাই এটি কোনো লেসন সংখ্যার সাথে মেলে না (chosen independently, so it does not match any lesson count)।</li>
+        </ul>
+
+        <h3 class="sec-title">সামগ্রিক শিখনফল (Learning Outcomes)</h3>
+        <p>এই নোটগুলো অধ্যয়ন শেষে আপনি যা করতে পারবেন:</p>
+        <ul>
+          <li>কৃত্রিম বুদ্ধিমত্তা (AI) কী এবং কী নয় তা ব্যাখ্যা করতে পারবেন।</li>
+          <li>নিউরাল নেটওয়ার্ক (Neural networks) কীভাবে শেখে তা বর্ণনা করতে পারবেন।</li>
+          <li>লার্জ ল্যাঙ্গুয়েজ মডেল (Large language models) কীভাবে টেক্সট তৈরি করে এবং কেন সেগুলো ভুল হতে পারে তা ব্যাখ্যা করতে পারবেন।</li>
+          <li>স্পষ্ট প্রম্পট (Clear prompts) লিখতে এবং উপযুক্ত কাজ বেছে নিতে পারবেন।</li>
+          <li>এআই-এর ঝুঁকিগুলো চিহ্নিত করতে এবং ঝুঁকির মাত্রা অনুযায়ী রিভিউ বা তদারকি নির্ধারণ করতে পারবেন।</li>
+        </ul>
+
+        <h3 class="sec-title">সারসংক্ষেপ (Summary)</h3>
+        <p>আধুনিক এআই মূলত নিউরাল নেটওয়ার্কের মাধ্যমে ডেটা থেকে শেখে। লার্জ ল্যাঙ্গুয়েজ মডেলগুলো সম্ভাব্য পরবর্তী অংশ (likely next pieces) অনুমান করার মাধ্যমে টেক্সটের ক্ষেত্রে এটি প্রয়োগ করে, যা এগুলোকে অত্যন্ত কার্যকর করার পাশাপাশি ভুলের প্রতিও সংবেদনশীল করে তোলে। ভালো ফলাফল আসে স্পষ্ট প্রম্পট, উপযুক্ত কাজ এবং সতর্ক রিভিউ থেকে, আর রিভিউয়ের পরিমাণ ঝুঁকির সাথে সামঞ্জস্যপূর্ণ হওয়া উচিত।</p>
+
+        <h3 class="sec-title">প্রস্তাবিত অধ্যয়ন ক্রম (Recommended Study Sequence)</h3>
+        <ol>
+          <li>প্রথমে <strong>Topic 1 (অধ্যায় ১)</strong> পড়ুন; মেশিন লার্নিং আপনার কাছে নতুন হলে ফোল্ডার ০১-এর মেশিন লার্নিং টপিকটিও এর সাথে দেখে নিতে পারেন।</li>
+          <li>প্রযুক্তিটি কীভাবে কাজ করে তা জানার জন্য <strong>Topic 2 (অধ্যায় ২)</strong> এবং <strong>Topic 3 (অধ্যায় ৩)</strong> পড়ুন।</li>
+          <li>আপনার নিজের একটি বাস্তব কাজের ওপর <strong>Topic 4 (অধ্যায় ৪)</strong> অনুশীলন করুন।</li>
+          <li>গুরুত্বপূর্ণ কোনো কিছুতে এআই ব্যবহার করার আগে <strong>Topic 5 (অধ্যায় ৫)</strong> পড়ুন।</li>
+          <li>কয়েক দিন পর উত্তর না দেখে স্ব-মূল্যায়ন প্রশ্নগুলোর (Self-assessment questions) উত্তর দিন।</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ==================== CHAPTER 1 ==================== -->
+    <section class="chapter-card" id="chapter-1">
+      <div class="chapter-header">
+        <div class="chapter-meta">
+          <span class="tag">Topic 001</span>
+          <span class="tag teal">Related Course: Intro to AI</span>
+          <span class="tag gold">আনুমানিক সময়: ২৫–৩০ মিনিট</span>
+        </div>
+        <h2 class="ch-title">অধ্যায় ১: কৃত্রিম বুদ্ধিমত্তা কী? (What Is Artificial Intelligence?)</h2>
+      </div>
+
+      <div class="disclaimer-quote">
+        এগুলো স্বতন্ত্র নোট। এগুলো 365 Data Science কোর্স থেকে লেখা হয়নি এবং উক্ত কোর্সের লেসনে কী শেখানো হয় তা বর্ণনা করে না। <em>(Source URL: None. Not based on platform content. | Content Type: Original Topic Notes | Status: Written)</em>
+      </div>
+
+      <h3 class="sec-title">১. টপিক ওভারভিউ (Topic Overview)</h3>
+      <p><strong>Artificial Intelligence (কৃত্রিম বুদ্ধিমত্তা / AI)</strong> বলতে এমন কম্পিউটার সিস্টেমকে বোঝায় যা সাধারণত মানুষের বুদ্ধিমত্তার সাথে সম্পর্কিত কাজগুলো সম্পাদন করে। এই কাজগুলোর মধ্যে রয়েছে ভাষা বোঝা (understanding language), ছবি চেনা (recognising images) এবং সিদ্ধান্ত নেওয়া (making decisions)।</p>
+      <p>"AI" শব্দটি খুব ঢিলেঢালাভাবে ব্যবহৃত হয়, তাই মানুষ প্রায়ই এর কাছে খুব বেশি অথবা খুব কম প্রত্যাশা করে। একটি স্পষ্ট সংজ্ঞা আপনাকে বিচার করতে সাহায্য করবে যে একটি সিস্টেম আসলে কী করতে পারে।</p>
+
+      <h3 class="sec-title">২. শিখন উদ্দেশ্য (Learning Objectives)</h3>
+      <p>এই টপিকটি অধ্যয়ন করার পর আপনি যা করতে পারবেন:</p>
+      <ul>
+        <li>সহজ ভাষায় AI ব্যাখ্যা করতে পারবেন।</li>
+        <li>Narrow AI (সংকীর্ণ এআই) থেকে General AI (সাধারণ এআই) আলাদা করতে পারবেন।</li>
+        <li>এআই ইতিহাসের কয়েকটি মূল মুহূর্ত বর্ণনা করতে পারবেন।</li>
+        <li>Rule-based AI (নিয়ম-ভিত্তিক এআই) কীভাবে Learning-based AI (শিক্ষণ-ভিত্তিক এআই) থেকে আলাদা তা ব্যাখ্যা করতে পারবেন।</li>
+        <li>দৈনন্দিন জীবনে এআই-এর ব্যবহারগুলো চিহ্নিত করতে পারবেন।</li>
+      </ul>
+
+      <h3 class="sec-title">৩. মূল ধারণা (Key Concepts)</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>ধারণা (Concept)</th>
+              <th>এর অর্থ কী (What it means)</th>
+              <th>কেন এটি গুরুত্বপূর্ণ (Why it matters)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Narrow AI (ন্যারো এআই)</strong></td>
+              <td>একটি নির্দিষ্ট কাজের জন্য তৈরি এআই</td>
+              <td>বর্তমানে ব্যবহৃত সমস্ত এআই এই শ্রেণিতে পড়ে</td>
+            </tr>
+            <tr>
+              <td><strong>General AI / AGI (জেনারেল এআই)</strong></td>
+              <td>কাল্পনিক বা তাত্ত্বিক এআই যা মানুষের মতো যেকোনো বুদ্ধিবৃত্তিক কাজ শিখতে সক্ষম</td>
+              <td>প্রায়ই আলোচিত হয়, কিন্তু এর আগমন ও সময়কাল নিয়ে বিতর্ক আছে</td>
+            </tr>
+            <tr>
+              <td><strong>Rule-based AI (রুল-বেজড এআই)</strong></td>
+              <td>মানুষের লেখা নিয়ম অনুসরণ করে চলা সিস্টেম</td>
+              <td>স্পষ্ট, কিন্তু সীমাবদ্ধ</td>
+            </tr>
+            <tr>
+              <td><strong>Learning-based AI (লার্নিং-বেজড এআই)</strong></td>
+              <td>ডেটা থেকে প্যাটার্ন শেখে এমন সিস্টেম</td>
+              <td>ভাষার মতো অগোছালো ও জটিল কাজ সামলাতে পারে</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="sec-title">৪. বিস্তারিত ব্যাখ্যা (Detailed Explanation)</h3>
+      <h4 class="sub-title">ন্যারো এবং জেনারেল এআই (Narrow and general AI)</h4>
+      <p>একটি দাবা খেলার ইঞ্জিন (chess engine) বিশ্ব চ্যাম্পিয়নদের হারাতে পারে কিন্তু ট্রেনের টিকিট বুক করতে পারে না। এটি হলো <strong>Narrow AI</strong>। এটি এক ধরনের কাজ খুব ভালোভাবে করে। কিছু আধুনিক টুল অনেক কাজ সামলাতে পারলেও সেগুলোর স্পষ্ট সীমাবদ্ধতা রয়েছে।</p>
+      <p><strong>General AI</strong> মানুষের মতোই নমনীয়ভাবে যেকোনো ক্ষেত্রের জ্ঞান শিখতে ও প্রয়োগ করতে পারবে। আমরা এর কতটা কাছাকাছি আছি এবং কীভাবে এটি পরীক্ষা করব তা নিয়ে মানুষের মধ্যে মতভেদ রয়েছে।</p>
+
+      <h4 class="sub-title">নিয়ম-ভিত্তিক এবং শিক্ষণ-ভিত্তিক এআই (Rule-based and learning-based AI)</h4>
+      <p>শুরুর দিকের এআই বিশেষজ্ঞদের লেখা নিয়মের ওপর নির্ভর করত। একটি "expert system"-এ ত্রুটি নির্ণয়ের জন্য হাজার হাজার <code>if-then</code> নিয়ম থাকতে পারত। এই সিস্টেমগুলো পরীক্ষা করা সহজ ছিল, কিন্তু কোনো কেস নিয়মের বাইরে পড়লেই সেগুলো ভেঙে পড়ত বা ব্যর্থ হতো।</p>
+      <p>আধুনিক এআই মূলত ডেটা থেকে শেখে। একটি বিড়াল চেনার জন্য প্রতিটি নিয়ম লেখার বদলে আপনি সিস্টেমটিকে অনেকগুলো লেবেলযুক্ত ছবি দেখান। এটি বাস্তব জগতের অগোছালো কাজগুলো অনেক ভালোভাবে সামলাতে পারে, তবে এর প্রচুর ডেটা প্রয়োজন হয় এবং এটি ব্যাখ্যা করা কঠিন হতে পারে।</p>
+
+      <div class="diagram-box">
+        <svg viewBox="0 0 680 150" width="100%" height="auto" role="img" aria-label="Rule-based vs Learning-based AI Diagram">
+          <rect x="10" y="15" width="310" height="120" rx="10" fill="#eff6ff" stroke="#1d4ed8" stroke-width="2"/>
+          <text x="165" y="42" text-anchor="middle" font-weight="bold" fill="#0f2537" font-size="15">Rule-Based AI (নিয়ম-ভিত্তিক)</text>
+          <text x="165" y="72" text-anchor="middle" fill="#1e293b" font-size="13">মানুষের লেখা নিয়ম (If-Then) + ডেটা</text>
+          <text x="165" y="102" text-anchor="middle" font-weight="bold" fill="#1d4ed8" font-size="14">➔ নির্দিষ্ট ফলাফল (নিয়মের বাইরে ব্যর্থ)</text>
+
+          <rect x="360" y="15" width="310" height="120" rx="10" fill="#f0fdfa" stroke="#0d9488" stroke-width="2"/>
+          <text x="515" y="42" text-anchor="middle" font-weight="bold" fill="#0f2537" font-size="15">Learning-Based AI (শিক্ষণ-ভিত্তিক)</text>
+          <text x="515" y="72" text-anchor="middle" fill="#1e293b" font-size="13">প্রচুর লেবেলযুক্ত ডেটা + প্রশিক্ষণ</text>
+          <text x="515" y="102" text-anchor="middle" font-weight="bold" fill="#0d9488" font-size="14">➔ নিজে থেকেই প্যাটার্ন শেখে</text>
+        </svg>
+        <div class="diagram-caption">[চিত্রায়ন / Illustrative Diagram]: Rule-Based AI বনাম Learning-Based AI-এর কাজের ধরন।</div>
+      </div>
+
+      <h4 class="sub-title">সংক্ষিপ্ত ইতিহাস (A short history)</h4>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>সময়কাল (When)</th>
+              <th>কী ঘটেছিল (What happened)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1950</strong></td>
+              <td>অ্যালান টিউরিং (Alan Turing) প্রশ্ন তোলেন যন্ত্র চিন্তা করতে পারে কি না এবং যন্ত্রের বুদ্ধিমত্তার একটি পরীক্ষার প্রস্তাব করেন</td>
+            </tr>
+            <tr>
+              <td><strong>1956</strong></td>
+              <td>ডার্টমাউথ ওয়ার্কশপ (Dartmouth workshop) এআই-কে একটি স্বতন্ত্র ক্ষেত্র হিসেবে প্রতিষ্ঠিত করতে সাহায্য করে</td>
+            </tr>
+            <tr>
+              <td><strong>1970s to 1980s</strong></td>
+              <td>শুরুর দিকের আশা মিইয়ে যায় এবং ফান্ডিং কমে আসে, যে সময়কালগুলোকে "AI winters" বলা হয়</td>
+            </tr>
+            <tr>
+              <td><strong>2012</strong></td>
+              <td>AlexNet নামের একটি ডিপ নিউরাল নেটওয়ার্ক বিশাল ব্যবধানে একটি বড় ইমেজ রিকগনিশন প্রতিযোগিতা জেতে</td>
+            </tr>
+            <tr>
+              <td><strong>2017</strong></td>
+              <td>গবেষকরা transformer ডিজাইন প্রবর্তন করেন, যা অনেক ল্যাঙ্গুয়েজ মডেলে ব্যবহৃত হয়</td>
+            </tr>
+            <tr>
+              <td><strong>Late 2022</strong></td>
+              <td>ChatGPT সাধারণ মানুষের কাছে জেনারেটিভ এআই নিয়ে আসে</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>সাম্প্রতিক অগ্রগতির পেছনে তিনটি জিনিস কাজ করেছে: <strong>আরও বেশি ডেটা (more data), দ্রুততর কম্পিউটার চিপ (faster computer chips) এবং উন্নততর অ্যালগরিদম (better algorithms)</strong>।</p>
+
+      <h4 class="sub-title">এআই কেন বাস্তবের চেয়ে বেশি বুদ্ধিমান মনে হতে পারে (Why AI can seem smarter than it is)</h4>
+      <p>একটি সিস্টেম মানুষের মতো না বুঝেই সাবলীল টেক্সট লিখতে পারে। একটি আত্মবিশ্বাসী উত্তর সঠিক উত্তরের প্রমাণ নয়। আপনার নিজের কাজের ওপর পরীক্ষা করে এআই-কে বিচার করুন।</p>
+
+      <h3 class="sec-title">৫. ব্যবহারিক উদাহরণ (Practical Examples)</h3>
+      <div class="callout example">
+        <span class="callout-title">📌 উদাহরণ: গ্রাহকদের ইমেইল বাছাই করা (Sorting customer emails)</span>
+        <ul>
+          <li><strong>পরিস্থিতি (Situation):</strong> একটি কোম্পানি প্রতিদিন শত শত সাপোর্ট ইমেইল পায়।</li>
+          <li><strong>সমস্যা (Problem):</strong> কর্মীরা বিষয় অনুযায়ী সেগুলো বাছাই করতে ঘণ্টার পর ঘণ্টা ব্যয় করেন।</li>
+          <li><strong>পদ্ধতি (Approach):</strong> একটি রুল-বেজড ফিল্টার <code>"refund"</code> শব্দটি ধরতে পারে, কিন্তু <code>"I want my money back"</code> মিস করে। অতীতের ইমেইলের ওপর প্রশিক্ষণপ্রাপ্ত একটি লার্নিং-বেজড মডেল ভিন্ন ভিন্ন শব্দচয়ন ভালোভাবে সামলাতে পারে।</li>
+          <li><strong>ফলাফল (Result):</strong> বেশিরভাগ ইমেইল সঠিক টিমের কাছে যায় এবং কর্মীরা কেবল অনিশ্চিত ইমেইলগুলো পরীক্ষা করেন।</li>
+          <li><strong>শিক্ষা (Lesson):</strong> মানুষ যখন একই ধারণা নানাভাবে প্রকাশ করে, তখন লার্নিং-বেজড এআই সবচেয়ে বেশি সাহায্য করে।</li>
+        </ul>
+      </div>
+
+      <h3 class="sec-title">৬. ধাপে ধাপে প্রক্রিয়া (Step-by-Step Process)</h3>
+      <p>কোনো পণ্য সত্যিই "AI" কি না তা বিচার করার ৫টি ধাপ:</p>
+      <ol>
+        <li><strong>এটি কী কাজ করে তা জিজ্ঞেস করুন (Ask what task it performs):</strong> একটি স্পষ্ট কাজ বিচার করা সহজ।</li>
+        <li><strong>এটি কীভাবে কাজ করে তা জিজ্ঞেস করুন (Ask how it works):</strong> এটি এআই লেবেল লাগানো সাধারণ কিছু নিয়ম হতে পারে।</li>
+        <li><strong>এর কী ডেটা প্রয়োজন তা জিজ্ঞেস করুন (Ask what data it needs):</strong> লার্নিং-বেজড টুল ডেটার ওপর নির্ভর করে।</li>
+        <li><strong>আপনার নিজের কেসের ওপর পরীক্ষা করুন (Test it on your own cases):</strong> ভেন্ডর ডেমোগুলো কেবল সেরা কেসগুলোই দেখায়।</li>
+        <li><strong>এটি ভুল করলে কী ঘটে তা পরীক্ষা করুন (Check what happens when it is wrong):</strong> ভুলের মাশুলই নির্ধারণ করে আপনার কতটুকু রিভিউ প্রয়োজন।</li>
+      </ol>
+
+      <h3 class="sec-title">৭. গুরুত্বপূর্ণ পরিভাষা (Important Terminology)</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>পরিভাষা (Term)</th>
+              <th>সহজ অর্থ (Simple Meaning)</th>
+              <th>উদাহরণ (Example)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Algorithm</strong></td>
+              <td>কম্পিউটার যে ধাপগুলো অনুসরণ করে</td>
+              <td>রাস্তা খোঁজার একটি পদ্ধতি</td>
+            </tr>
+            <tr>
+              <td><strong>Expert system</strong></td>
+              <td>লিখিত নিয়ম থেকে তৈরি পুরনো এআই</td>
+              <td>ত্রুটি খুঁজে বের করার সিস্টেম</td>
+            </tr>
+            <tr>
+              <td><strong>Computer vision</strong></td>
+              <td>ছবি নিয়ে কাজ করে এমন এআই</td>
+              <td>গাড়ির নম্বর প্লেট পড়া</td>
+            </tr>
+            <tr>
+              <td><strong>Natural language processing</strong></td>
+              <td>মানুষের ভাষা নিয়ে কাজ করে এমন এআই</td>
+              <td>টেক্সট অনুবাদ করা</td>
+            </tr>
+            <tr>
+              <td><strong>AI winter</strong></td>
+              <td>কম আগ্রহ ও ফান্ডিংয়ের সময়কাল</td>
+              <td>বিগত দশকগুলোর মন্দাভাব</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="sec-title">৮. সাধারণ ভুলসমূহ (Common Mistakes)</h3>
+      <ul>
+        <li><strong>সব এআই-কে এক মনে করা:</strong> একটি স্প্যাম ফিল্টার এবং একটি চ্যাটবট সম্পূর্ণ ভিন্ন।</li>
+        <li><strong>এআই মানুষের মতো বোঝে বলে ধরে নেওয়া:</strong> সাবলীল আউটপুটও ভুল হতে পারে।</li>
+        <li><strong>এআই-তে মানুষের প্রয়োজন নেই ভাবা:</strong> বেশিরভাগ ব্যবহারেই মানুষের রিভিউ প্রয়োজন।</li>
+        <li><strong>সহজ বিকল্প উপেক্ষা করা:</strong> একটি সাধারণ নিয়মই অনেক সময় যথেষ্ট হতে পারে।</li>
+      </ul>
+
+      <h3 class="sec-title">৯. বাস্তব জগতের প্রয়োগ (Real-World Applications)</h3>
+      <ul>
+        <li>ফেইস রিকগনিশন দিয়ে ফোনের লক খোলা।</li>
+        <li>ম্যাপে ভ্রমণের সময় অনুমান করা।</li>
+        <li>ব্যাংকে অস্বাভাবিক কার্ড পেমেন্ট চিহ্নিত করা।</li>
+        <li>অনুবাদ টুলে এক ভাষা থেকে অন্য ভাষায় টেক্সট রূপান্তর করা।</li>
+        <li>কারখানায় পণ্যের ছবি দেখে ত্রুটি পরীক্ষা করা।</li>
+      </ul>
+
+      <h3 class="sec-title">১০. মূল শিক্ষণীয় বিষয় (Key Takeaways)</h3>
+      <ul>
+        <li>মানুষের বুদ্ধিমত্তার সাথে যুক্ত কাজগুলো সম্পাদনকারী সিস্টেমগুলোই এআই।</li>
+        <li>আজকের ব্যবহৃত সব এআই-ই কোনো না কোনোভাবে সংকীর্ণ (narrow)।</li>
+        <li>আধুনিক এআই মূলত ডেটা থেকে শেখে।</li>
+        <li>সাবলীল আউটপুট মানেই বোঝা বা সত্য হওয়া নয়।</li>
+      </ul>
+
+      <h3 class="sec-title">১১. দ্রুত রিভিশন নোটস (Quick Revision Notes)</h3>
+      <ul>
+        <li>Narrow AI নির্দিষ্ট কাজ করে। General AI কাল্পনিক/তাত্ত্বিক।</li>
+        <li>Rule-based মানে মানুষের লেখা। Learning-based মানে ডেটা থেকে শেখা।</li>
+        <li>মূল চালিকাশক্তি: ডেটা, চিপ এবং অ্যালগরিদম।</li>
+        <li>সবসময় নিজের কাজের ওপর পরীক্ষা করুন।</li>
+      </ul>
+
+      <h3 class="sec-title">১২. স্ব-মূল্যায়ন প্রশ্নোত্তর (Self-Assessment Questions)</h3>
+      <p><em>উত্তর দেখতে প্রশ্নের ওপর ক্লিক করুন:</em></p>
+      <details class="qa-item">
+        <summary>১. দাবা খেলার ইঞ্জিনকে কেন ন্যারো এআই (narrow AI) বলা হয়?</summary>
+        <p>উত্তর: এটি এক ধরনের কাজ খুব ভালোভাবে করে এবং সেই দক্ষতা অন্য কোনো অসম্পর্কিত কাজে স্থানান্তর করতে পারে না।</p>
+      </details>
+      <details class="qa-item">
+        <summary>২. এক্সপার্ট সিস্টেমগুলোর (expert systems) একটি দুর্বলতা কী ছিল?</summary>
+        <p>উত্তর: তাদের লিখিত নিয়মের বাইরে কোনো কেস পড়লেই সেগুলো ব্যর্থ হতো।</p>
+      </details>
+      <details class="qa-item">
+        <summary>৩. সাম্প্রতিক এআই অগ্রগতির পেছনে কোন তিনটি জিনিস কাজ করেছে?</summary>
+        <p>উত্তর: আরও বেশি ডেটা (More data), দ্রুততর চিপ (faster chips) এবং উন্নততর অ্যালগরিদম (better algorithms)।</p>
+      </details>
+      <details class="qa-item">
+        <summary>৪. একটি লার্নিং-বেজড ইমেইল সর্টার কেন কিওয়ার্ড ফিল্টারকে হারাতে পারে?</summary>
+        <p>উত্তর: এটি ভিন্ন ভিন্ন শব্দচয়নের ভেতর থেকেও একই অর্থ চিনতে পারে।</p>
+      </details>
+      <details class="qa-item">
+        <summary>৫. কোনো উত্তর কেবল আত্মবিশ্বাসী শোনালেই কেন সেটিকে বিশ্বাস করা উচিত নয়?</summary>
+        <p>উত্তর: এআই সাবলীল ও আত্মবিশ্বাসী টেক্সট তৈরি করতে পারে যা আসলে ভুল।</p>
+      </details>
+
+      <h3 class="sec-title">১৩. অতিরিক্ত শিক্ষণ নোট (Additional Learning Notes)</h3>
+      <p>"AI" শব্দটি ক্রমাগত পরিবর্তিত হচ্ছে। কোনো কৌশল যখন খুব সাধারণ হয়ে যায়—যেমন স্পেল চেক বা রুট প্ল্যানিং—মানুষ তখন প্রায়ই সেটিকে আর AI বলা বন্ধ করে দেয়।</p>
+
+      <h3 class="sec-title">১৪. উৎস এবং কভারেজ নোট (Source and Coverage Notes)</h3>
+      <ul>
+        <li>সাধারণ বিষয়ভিত্তিক জ্ঞান থেকে রচিত।</li>
+        <li>প্ল্যাটফর্মের কোনো লেসন, ভিডিও, ট্রান্সক্রিপ্ট, স্লাইড বা কুইজ ব্যবহার করা হয়নি।</li>
+        <li>পাবলিক কোর্সের শিরোনাম থেকে টপিকটি বেছে নেওয়া হয়েছে, তাই এটি কোর্সের প্রকৃত বিষয়বস্তুর সাথে নাও মিলতে পারে।</li>
+      </ul>
+
+      <div class="callout supplement">
+        <span class="callout-title">💡 [অতিরিক্ত শিক্ষা সহায়িকা / Supplementary Learning Aid]</span>
+        <p><strong>সহজ ভাষায় বুঝুন:</strong> সাধারণ ক্যালকুলেটর বা এক্সেল ফর্মুলা হলো <em>Rule-based</em>। আর আপনার ফোনের গ্যালারি যখন স্বয়ংক্রিয়ভাবে আপনার পরিবারের সদস্যদের মুখ চিনে আলাদা ফোল্ডার করে দেয়, সেটি হলো <em>Learning-based Narrow AI</em>।</p>
+      </div>
+
+      <div class="quiz-box">
+        <div class="quiz-q">🎯 তাৎক্ষণিক কুইজ (অধ্যায় ১): নিচের কোন সালে গবেষকরা Transformer ডিজাইন প্রবর্তন করেন?</div>
+        <button class="quiz-opt" onclick="checkQuiz(this, false, 'q1-fb')">১৯৫৬ সালে</button>
+        <button class="quiz-opt" onclick="checkQuiz(this, false, 'q1-fb')">২০১২ সালে</button>
+        <button class="quiz-opt" onclick="checkQuiz(this, true, 'q1-fb')">২০১৭ সালে</button>
+        <button class="quiz-opt" onclick="checkQuiz(this, false, 'q1-fb')">২০২২ সালের শেষভাগে</button>
+        <div class="quiz-feedback" id="q1-fb"></div>
+      </div>
+
+      <div class="complete-bar">
+        <span>অধ্যায় ১ সমাপ্ত করেছেন?</span>
+        <button class="btn-complete" id="btn-ch-1" onclick="toggleChapter(1)">✔ অধ্যায় ১ সম্পন্ন হিসেবে চিহ্নিত করুন</button>
+      </div>
+    </section>
+
+    <!-- ==================== CHAPTER 2 ==================== -->
+    <section class="chapter-card" id="chapter-2">
+      <div class="chapter-header">
+        <div class="chapter-meta">
+          <span class="tag">Topic 002</span>
+          <span class="tag teal">Related Course: Intro to AI</span>
+          <span class="tag gold">আনুমানিক সময়: ৩৫–৪০ মিনিট</span>
+        </div>
+        <h2 class="ch-title">অধ্যায় ২: এআই কীভাবে শেখে: নিউরাল নেটওয়ার্ক ও ডিপ লার্নিং (How AI Learns: Neural Networks and Deep Learning)</h2>
+      </div>
+
+      <div class="disclaimer-quote">
+        এগুলো স্বতন্ত্র নোট। এগুলো 365 Data Science কোর্স থেকে লেখা হয়নি এবং উক্ত কোর্সের লেসনে কী শেখানো হয় তা বর্ণনা করে না। <em>(Source URL: None. Not based on platform content. | Content Type: Original Topic Notes | Status: Written)</em>
+      </div>
+
+      <h3 class="sec-title">১. টপিক ওভারভিউ (Topic Overview)</h3>
+      <p>আধুনিক এআই-এর বেশিরভাগই তৈরি হয়েছে <strong>Neural networks (নিউরাল নেটওয়ার্ক)</strong>-এর ওপর। এগুলো হলো পরস্পরের সাথে যুক্ত সাধারণ কিছু এককের সিস্টেম যা উদাহরণ দেখার সাথে সাথে নিজেদের সমন্বয় করে নেয়।</p>
+      <p>মূল ধারণাটি বোঝার জন্য আপনার উচ্চতর গণিতের প্রয়োজন নেই। নেটওয়ার্কটি অনুমান করে (guesses), তার ভুল পরিমাপ করে (measures its error), এবং লক্ষ-কোটি বার ছোট ছোট সংশোধন করে।</p>
+
+      <h3 class="sec-title">২. শিখন উদ্দেশ্য (Learning Objectives)</h3>
+      <p>এই টপিকটি অধ্যয়ন করার পর আপনি যা করতে পারবেন:</p>
+      <ul>
+        <li>সহজ ভাষায় একটি নিউরাল নেটওয়ার্ক বর্ণনা করতে পারবেন।</li>
+        <li>ওয়েট (Weights) কী কাজ করে তা ব্যাখ্যা করতে পারবেন।</li>
+        <li>ট্রেইনিং লুপ (Training loop) বর্ণনা করতে পারবেন।</li>
+        <li>কোন বিষয়টি লার্নিংকে "ডিপ" (deep) করে তোলে তা ব্যাখ্যা করতে পারবেন।</li>
+        <li>একটি সাধারণ কৃত্রিম নিউরনের আউটপুট হিসাব করতে পারবেন।</li>
+      </ul>
+
+      <h3 class="sec-title">৩. মূল ধারণা (Key Concepts)</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>ধারণা (Concept)</th>
+              <th>এর অর্থ কী (What it means)</th>
+              <th>কেন এটি গুরুত্বপূর্ণ (Why it matters)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Neuron (নিউরন)</strong></td>
+              <td>একটি ছোট একক যা ইনপুটগুলোকে একত্রিত করে আউটপুটে রূপান্তর করে</td>
+              <td>মৌলিক গাঠনিক একক (The basic building block)</td>
+            </tr>
+            <tr>
+              <td><strong>Weight (ওয়েট)</strong></td>
+              <td>একটি সংখ্যা যা দেখায় কোনো ইনপুট কতটা গুরুত্ব পাবে</td>
+              <td>নেটওয়ার্ক মূলত এটিই শেখে</td>
+            </tr>
+            <tr>
+              <td><strong>Layer (লেয়ার)</strong></td>
+              <td>একই ধাপে কাজ করা একদল নিউরন</td>
+              <td>লেয়ারগুলো জটিল প্যাটার্ন তৈরি করে</td>
+            </tr>
+            <tr>
+              <td><strong>Loss (লস)</strong></td>
+              <td>আউটপুটটি কতটা ভুল তা পরিমাপকারী সংখ্যা</td>
+              <td>এটি শেখার প্রক্রিয়াকে পথ দেখায়</td>
+            </tr>
+            <tr>
+              <td><strong>Training (ট্রেইনিং)</strong></td>
+              <td>লস কমানোর জন্য বারবার ওয়েট সমন্বয় করা</td>
+              <td>একটি ফাঁকা নেটওয়ার্ককে কার্যকর নেটওয়ার্কে পরিণত করে</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="sec-title">৪. বিস্তারিত ব্যাখ্যা (Detailed Explanation)</h3>
+      <h4 class="sub-title">একটি নিউরন কী করে (What a neuron does)</h4>
+      <p>একটি কৃত্রিম নিউরন মস্তিষ্কের কোষ থেকে হালকাভাবে অনুপ্রাণিত, কিন্তু এটি আসলে সাধারণ গণিত। এটি কিছু সংখ্যা নেয়, প্রতিটি সংখ্যাকে একটি ওয়েট দিয়ে গুণ করে, সেগুলোকে যোগ করে এবং ফলাফলটি পাঠিয়ে দেয়।</p>
+      <p>হাঁটতে যাওয়ার সিদ্ধান্তের কথা ভাবুন: আপনি আবহাওয়াকে বেশি গুরুত্ব দেন এবং দূরত্বকে কম গুরুত্ব দেন। নিউরনও সংখ্যার সাহায্যে অনুরূপ কাজ করে।</p>
+
+      <h4 class="sub-title">স্তরসমূহ (Layers)</h4>
+      <p>নিউরনগুলো বিভিন্ন স্তরে বা লেয়ারে সাজানো থাকে:</p>
+      <ul>
+        <li><strong>Input layer (ইনপুট লেয়ার):</strong> ডেটা গ্রহণ করে।</li>
+        <li><strong>Hidden layers (হিডেন লেয়ার):</strong> ডেটাকে ধাপে ধাপে রূপান্তর করে।</li>
+        <li><strong>Output layer (আউটপুট লেয়ার):</strong> ফলাফল প্রদান করে।</li>
+      </ul>
+      <p>ইমেজ রিকগনিশনে শুরুর লেয়ারগুলো কিনারা বা দাগের (edges) প্রতি, মাঝের লেয়ারগুলো আকৃতির (shapes) প্রতি এবং পরের লেয়ারগুলো সম্পূর্ণ বস্তুর (whole objects) প্রতি সাড়া দিতে পারে। কেউ হাতে ধরে এই ধাপগুলো প্রোগ্রাম করে না; ট্রেইনিংয়ের সময় এগুলো নিজে থেকেই তৈরি হয়।</p>
+
+      <div class="diagram-box">
+        <svg viewBox="0 0 650 180" width="100%" height="auto" role="img" aria-label="Single Neuron Calculation Diagram">
+          <circle cx="80" cy="50" r="24" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/>
+          <text x="80" y="55" text-anchor="middle" font-weight="bold" font-size="13">Input 1 (2)</text>
+          <circle cx="80" cy="130" r="24" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/>
+          <text x="80" y="135" text-anchor="middle" font-weight="bold" font-size="13">Input 2 (3)</text>
+
+          <line x1="104" y1="50" x2="290" y2="85" stroke="#0f2537" stroke-width="2"/>
+          <text x="190" y="55" text-anchor="middle" fill="#b91c1c" font-weight="bold" font-size="13">× Weight 1 (0.5)</text>
+
+          <line x1="104" y1="130" x2="290" y2="95" stroke="#0f2537" stroke-width="2"/>
+          <text x="190" y="135" text-anchor="middle" fill="#b91c1c" font-weight="bold" font-size="13">× Weight 2 (1.0)</text>
+
+          <circle cx="330" cy="90" r="42" fill="#ccfbf1" stroke="#0d9488" stroke-width="3"/>
+          <text x="330" y="85" text-anchor="middle" font-weight="bold" font-size="13">Sum + Bias</text>
+          <text x="330" y="103" text-anchor="middle" font-size="12">(1 + 3 + 1)</text>
+
+          <line x1="372" y1="90" x2="490" y2="90" stroke="#0d9488" stroke-width="3"/>
+          <rect x="490" y="65" width="130" height="50" rx="8" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+          <text x="555" y="95" text-anchor="middle" font-weight="bold" fill="#78350f" font-size="15">Output = 5.0</text>
+        </svg>
+        <div class="diagram-caption">[চিত্রায়ন / Illustrative Diagram]: একটি কৃত্রিম নিউরনে ইনপুট, ওয়েট এবং বায়াসের গাণিতিক হিসাব।</div>
+      </div>
+
+      <h4 class="sub-title">ট্রেইনিং লুপ (The training loop)</h4>
+      <ol>
+        <li><strong>Guess (অনুমান):</strong> নেটওয়ার্কটি একটি পূর্বাভাস দেয়।</li>
+        <li><strong>Measure (পরিমাপ):</strong> লস (Loss) দেখায় এটি কতটা ভুল ছিল।</li>
+        <li><strong>Trace the error (ভুলের উৎস অনুসন্ধান):</strong> <strong>backpropagation</strong> নামের একটি অ্যালগরিদম বের করে কোন ওয়েট কতটুকু দায়ী ছিল।</li>
+        <li><strong>Adjust (সমন্বয়):</strong> প্রতিটি ওয়েট সামান্য সেদিকে সরে যায় যেদিকে গেলে ভুল কমে। একে <strong>gradient descent</strong> বলে।</li>
+        <li><strong>Repeat (পুনরাবৃত্তি):</strong> অনেকগুলো উদাহরণের ওপর এই লুপ চলতে থাকে।</li>
+      </ol>
+      <p>কুয়াশাচ্ছন্ন পাহাড় থেকে হেঁটে নামার কথা ভাবুন। আপনি তলদেশ দেখতে পান না, তাই অনুভব করেন কোন দিকে ঢাল নিচে নেমেছে এবং ছোট একটি পদক্ষেপ নেন। এটি বারবার করলে আপনি নিচে পৌঁছে যান।</p>
+
+      <h4 class="sub-title">কেন "ডিপ" গুরুত্বপূর্ণ (Why "deep" matters)</h4>
+      <p><strong>Deep learning</strong> মানে অনেকগুলো হিডেন লেয়ার বিশিষ্ট নেটওয়ার্ক ব্যবহার করা। অতিরিক্ত লেয়ারগুলো সাধারণ ধারণা থেকে জটিল ধারণা তৈরি করতে দেয়। এটি ছবি, কথা ও ভাষার জন্য উপযুক্ত, যেখানে কার্যকর প্যাটার্নগুলো হাতে বর্ণনা করা কঠিন।</p>
+
+      <h4 class="sub-title">বিনিময় মূল্য বা সীমাবদ্ধতা (The trade-offs)</h4>
+      <ul>
+        <li>ডিপ লার্নিংয়ে সাধারণত বিশাল পরিমাণ ডেটা প্রয়োজন হয়।</li>
+        <li>ট্রেইনিংয়ে প্রচুর কম্পিউটিং শক্তি লাগতে পারে, প্রায়ই বিশেষ চিপে (GPUs)।</li>
+        <li>নেটওয়ার্ক কেন একটি নির্দিষ্ট সিদ্ধান্ত নিল তা ব্যাখ্যা করা প্রায়ই কঠিন।</li>
+      </ul>
+
+      <h3 class="sec-title">৫. ব্যবহারিক উদাহরণ (Practical Examples)</h3>
+      <div class="callout example">
+        <span class="callout-title">📌 উদাহরণ: ত্রুটিপূর্ণ কাপড় শনাক্ত করা (Spotting faulty fabric)</span>
+        <ul>
+          <li><strong>পরিস্থিতি (Situation):</strong> একটি টেক্সটাইল কারখানা কাপড়ের ত্রুটি পরীক্ষা করতে চায়।</li>
+          <li><strong>সমস্যা (Problem):</strong> ত্রুটি নানা রকমের হয়, তাই বাঁধাধরা নিয়ম অনেক ত্রুটি মিস করে।</li>
+          <li><strong>পদ্ধতি (Approach):</strong> টিম ভালো ও ত্রুটিপূর্ণ কাপড়ের লেবেলযুক্ত ছবি সংগ্রহ করে এবং একটি নেটওয়ার্ককে প্রশিক্ষণ দেয়।</li>
+          <li><strong>ফলাফল (Result):</strong> সিস্টেমটি সন্দেহজনক কাপড় চিহ্নিত করে যাতে একজন মানুষ তা পরিদর্শন করতে পারেন।</li>
+          <li><strong>শিক্ষা (Lesson):</strong> নেটওয়ার্কটি এমন প্যাটার্ন শিখেছে যা নিয়মে বর্ণনা করা কঠিন হতো, তবে এর মান নির্ভর করে উদাহরণগুলোর ওপর।</li>
+        </ul>
+        <p style="margin-bottom:0; font-size:13.5px; color:#475569;"><em>বি.দ্র.: এই উদাহরণটি একটি চিত্রায়ন মাত্র, কোনো বাস্তব প্রজেক্টের রিপোর্ট নয় (This example is an illustration, not a report of a real project)।</em></p>
+      </div>
+
+      <h3 class="sec-title">৬. ধাপে ধাপে প্রক্রিয়া (Step-by-Step Process)</h3>
+      <p>একটি নেটওয়ার্ক কীভাবে একটি উদাহরণ থেকে শেখে তা ব্যাখ্যা করার ৫টি ধাপ:</p>
+      <ol>
+        <li><strong>ডেটা প্রবেশ করান (Feed in the data):</strong> প্রসেস করার জন্য নেটওয়ার্কের কিছু ডেটা প্রয়োজন।</li>
+        <li><strong>আউটপুট নিন (Get the output):</strong> এটি তার বর্তমান সেরা অনুমান।</li>
+        <li><strong>সঠিক উত্তরের সাথে তুলনা করুন (Compare with the right answer):</strong> এটি লস তৈরি করে।</li>
+        <li><strong>ওয়েটগুলো সামান্য আপডেট করুন (Update the weights slightly):</strong> ছোট পদক্ষেপ শেখাকে স্থিতিশীল রাখে।</li>
+        <li><strong>পরবর্তী উদাহরণে যান (Move to the next example):</strong> অনেকবার পুনরাবৃত্তি থেকেই শেখা আসে।</li>
+      </ol>
+
+      <h3 class="sec-title">৭. কোড এবং টেকনিক্যাল প্রদর্শনী (Code and Technical Demonstrations)</h3>
+      <p>এই ছোট মৌলিক Python উদাহরণটি একটি নিউরনের আউটপুট হিসাব করে (বাস্তব নেটওয়ার্কে যোগ করা অ্যাক্টিভেশন ফাংশনটি বাদ রেখে):</p>
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+<pre><code>inputs = [2, 3]
+weights = [0.5, 1]
+bias = 1
+
+output = sum(i * w for i, w in zip(inputs, weights)) + bias
+print(output)</code></pre>
+      </div>
+      <p><strong>এটি কী করে (What it does):</strong></p>
+      <ul>
+        <li><code>zip</code> প্রতিটি ইনপুটকে তার ওয়েটের সাথে জোড়া দেয়।</li>
+        <li><code>i * w</code> প্রতিটি ইনপুটকে স্কেল বা গুণ করে।</li>
+        <li><code>sum</code> গুণফলগুলোকে যোগ করে।</li>
+        <li><code>bias</code> চূড়ান্ত ফলাফলটিকে শিফট করে।</li>
+      </ul>
+      <p><strong>প্রত্যাশিত আউটপুট (Expected output):</strong></p>
+      <div class="code-container"><pre><code>5.0</code></pre></div>
+      <p><strong>সাধারণ ভুল (Common error):</strong> তালিকা দুটির দৈর্ঘ্য সমান হতে হবে। <code>zip</code> কোনো সতর্কবার্তা ছাড়াই ছোট তালিকাটিতে থেমে যায়, তাই কোনো ওয়েট বাদ পড়লে এরর দেখাবে না।</p>
+
+      <h3 class="sec-title">৮. গুরুত্বপূর্ণ সূত্রাবলি ও ইন্টারঅ্যাকটিভ ক্যালকুলেটর (Important Formulas)</h3>
+      <div class="callout formula">
+        <span class="callout-title">📐 একটি সাধারণ নিউরনের আউটপুট (Output of a simple neuron)</span>
+        <p><strong>Output = (input₁ × weight₁) + (input₂ × weight₂) + bias</strong></p>
+        <ul>
+          <li><strong>Inputs:</strong> ভেতরে যাওয়া সংখ্যাগুলো।</li>
+          <li><strong>Weights:</strong> প্রতিটি ইনপুট কতটা গুরুত্ব পাবে।</li>
+          <li><strong>Bias:</strong> এমন একটি মান যা আউটপুটকে ওপরে বা নিচে শিফট করে।</li>
+        </ul>
+        <p><strong>কষে দেওয়া উদাহরণ (Worked example):</strong> ইনপুট <code>2</code> এবং <code>3</code>, ওয়েট <code>0.5</code> এবং <code>1</code>, এবং বায়াস <code>1</code>।<br>
+        (2 × 0.5) + (3 × 1) + 1 = 1 + 3 + 1 = <strong>5</strong></p>
+      </div>
+
+      <!-- Interactive Neuron Calculator -->
+      <div class="calc-box">
+        <strong>🧮 ইন্টারঅ্যাকটিভ নিউরন ক্যালকুলেটর (নিজে সংখ্যা বদলে পরীক্ষা করুন):</strong>
+        <div class="calc-grid">
+          <div><label>Input 1</label><input type="number" id="n-i1" value="2" step="any" oninput="calcNeuron()"></div>
+          <div><label>Weight 1</label><input type="number" id="n-w1" value="0.5" step="any" oninput="calcNeuron()"></div>
+          <div><label>Input 2</label><input type="number" id="n-i2" value="3" step="any" oninput="calcNeuron()"></div>
+          <div><label>Weight 2</label><input type="number" id="n-w2" value="1" step="any" oninput="calcNeuron()"></div>
+          <div><label>Bias</label><input type="number" id="n-b" value="1" step="any" oninput="calcNeuron()"></div>
+        </div>
+        <div class="calc-result" id="neuron-res">ফলাফল (Output): (2 × 0.5) + (3 × 1) + 1 = 5</div>
+      </div>
+
+      <h3 class="sec-title">৯. গুরুত্বপূর্ণ পরিভাষা (Important Terminology)</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>পরিভাষা (Term)</th>
+              <th>সহজ অর্থ (Simple Meaning)</th>
+              <th>উদাহরণ (Example)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Parameter</strong></td>
+              <td>মডেল যে মানটি শেখে</td>
+              <td>একটি ওয়েট (A weight)</td>
+            </tr>
+            <tr>
+              <td><strong>Epoch</strong></td>
+              <td>ট্রেইনিং ডেটার মধ্য দিয়ে একবার পূর্ণাঙ্গ আবর্তন</td>
+              <td>সবগুলো ছবি একবার দেখা</td>
+            </tr>
+            <tr>
+              <td><strong>Backpropagation</strong></td>
+              <td>নেটওয়ার্কের পেছনে ভুলের উৎস অনুসন্ধান করা</td>
+              <td>কোন ওয়েটগুলো পরিবর্তন করতে হবে তা খুঁজে বের করা</td>
+            </tr>
+            <tr>
+              <td><strong>Gradient descent</strong></td>
+              <td>ভুল কমানোর জন্য ধাপে ধাপে এগিয়ে যাওয়া</td>
+              <td>পাহাড় থেকে নিচে হেঁটে নামা</td>
+            </tr>
+            <tr>
+              <td><strong>GPU</strong></td>
+              <td>একটি চিপ যা একসাথে অনেক হিসাব করতে পারে</td>
+              <td>ট্রেইনিংয়ের কাজে ব্যবহৃত হয়</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="sec-title">১০. সাধারণ ভুলসমূহ (Common Mistakes)</h3>
+      <ul>
+        <li><strong>নিউরাল নেটওয়ার্ক মস্তিষ্কের মতো কাজ করে ভাবা:</strong> সংযোগটি কেবল হালকা অনুপ্রেরণার।</li>
+        <li><strong>বেশি লেয়ার সবসময় ভালো ভাবা:</strong> বড় মডেল ওভারফিট করতে পারে এবং খরচ বেশি হয়।</li>
+        <li><strong>ছোট টেবিলে ডিপ লার্নিং ব্যবহার করা:</strong> ছোট ও গোছালো ডেটাসেটে সাধারণ মডেলগুলোও সমান ভালো কাজ করে।</li>
+        <li><strong>মডেলকে পুরোপুরি ব্যাখ্যাযোগ্য মনে করা:</strong> সিদ্ধান্ত গুরুত্বপূর্ণ হলে রিভিউয়ের পরিকল্পনা রাখুন।</li>
+      </ul>
+
+      <h3 class="sec-title">১১. বাস্তব জগতের প্রয়োগ (Real-World Applications)</h3>
+      <ul>
+        <li>ফোনে স্পিচ রিকগনিশন (Speech recognition)।</li>
+        <li>বিশেষজ্ঞদের জন্য মেডিক্যাল ইমেজ সাপোর্ট।</li>
+        <li>ভাষা অনুবাদ।</li>
+        <li>সেলফ-ড্রাইভিং গবেষণা।</li>
+        <li>কারখানায় ভিজ্যুয়াল ইন্সপেকশন।</li>
+      </ul>
+
+      <h3 class="sec-title">১২. মূল শিক্ষণীয় বিষয় (Key Takeaways)</h3>
+      <ul>
+        <li>নিউরাল নেটওয়ার্ক হলো পরস্পরের সাথে যুক্ত অনেকগুলো সাধারণ হিসাব।</li>
+        <li>শেখা মানে ভুল কমানোর জন্য ওয়েট সমন্বয় করা।</li>
+        <li>ডিপ নেটওয়ার্ক সাধারণ প্যাটার্ন থেকে জটিল প্যাটার্ন তৈরি করে।</li>
+        <li>ক্ষমতার সাথে ডেটা, কম্পিউটিং এবং ব্যাখ্যাযোগ্যতার খরচ জড়িত।</li>
+      </ul>
+
+      <h3 class="sec-title">১৩. দ্রুত রিভিশন নোটস (Quick Revision Notes)</h3>
+      <ul>
+        <li>Neuron: ইনপুটগুলোর ওয়েটেড যোগফল।</li>
+        <li>Layers: input, hidden, output।</li>
+        <li>Loop: guess, measure, trace, adjust, repeat।</li>
+        <li>Deep মানে অনেকগুলো লেয়ার।</li>
+      </ul>
+
+      <h3 class="sec-title">১৪. স্ব-মূল্যায়ন প্রশ্নোত্তর (Self-Assessment Questions)</h3>
+      <details class="qa-item">
+        <summary>১. একটি ওয়েট (weight) কী নির্দেশ করে?</summary>
+        <p>উত্তর: আউটপুটের ক্ষেত্রে একটি ইনপুট কতটা গুরুত্ব পাবে তা নির্দেশ করে।</p>
+      </details>
+      <details class="qa-item">
+        <summary>২. লস (loss) কী পরিমাপ করে?</summary>
+        <p>উত্তর: নেটওয়ার্কের আউটপুট কতটা ভুল তা পরিমাপ করে।</p>
+      </details>
+      <details class="qa-item">
+        <summary>৩. গ্র্যাডিয়েন্ট ডিসেন্ট (gradient descent) কী করে?</summary>
+        <p>উত্তর: এটি ভুল কমানোর জন্য ছোট ছোট ধাপে ওয়েটগুলো সমন্বয় করে।</p>
+      </details>
+      <details class="qa-item">
+        <summary>৪. ইনপুট 1 ও 4, ওয়েট 2 ও 0.5, এবং বায়াস 0 হলে আউটপুট কত?</summary>
+        <p>উত্তর: (1 × 2) + (4 × 0.5) + 0 = 2 + 2 = 4।</p>
+      </details>
+      <details class="qa-item">
+        <summary>৫. ডিপ লার্নিংয়ের দুটি ট্রেড-অফ (trade-offs) উল্লেখ করুন।</summary>
+        <p>উত্তর: উচ্চ ডেটার চাহিদা, উচ্চ কম্পিউটিং খরচ এবং কম ব্যাখ্যাযোগ্যতা—এই তিনটির যেকোনো দুটি।</p>
+      </details>
+
+      <h3 class="sec-title">১৫. অতিরিক্ত শিক্ষণ নোট (Additional Learning Notes)</h3>
+      <p>বাস্তব নিউরনগুলো <strong>ReLU</strong>-এর মতো একটি <strong>activation function</strong>-ও ব্যবহার করে। এটি ছাড়া আপনি যত লেয়ারই যোগ করুন না কেন, স্তূপীকৃত লেয়ারগুলো কেবল সরলরৈখিক সম্পর্কই (straight-line relationships) প্রকাশ করতে পারবে।</p>
+
+      <h3 class="sec-title">১৬. উৎস এবং কভারেজ নোট (Source and Coverage Notes)</h3>
+      <ul>
+        <li>সাধারণ বিষয়ভিত্তিক জ্ঞান থেকে রচিত।</li>
+        <li>প্ল্যাটফর্মের কোনো লেসন, ভিডিও, ট্রান্সক্রিপ্ট, স্লাইড বা কুইজ ব্যবহার করা হয়নি।</li>
+        <li>কোডটি মৌলিক এবং হাতে পরীক্ষা করা হয়েছে (checked by hand), তবে মূল নোটে এটি রান করা হয়নি।</li>
+        <li>পাবলিক কোর্সের শিরোনাম থেকে টপিকটি বেছে নেওয়া হয়েছে, তাই এটি কোর্সের প্রকৃত বিষয়বস্তুর সাথে নাও মিলতে পারে।</li>
+      </ul>
+
+      <div class="quiz-box">
+        <div class="quiz-q">🎯 তাৎক্ষণিক কুইজ (অধ্যায় ২): সম্পূর্ণ ট্রেইনিং ডেটার মধ্য দিয়ে একবার পূর্ণাঙ্গ আবর্তনকে কী বলা হয়?</div>
+        <button class="quiz-opt" onclick="checkQuiz(this, false, 'q2-fb')">Bias</button>
+        <button class="quiz-opt" onclick="checkQuiz(this, true, 'q2-fb')">Epoch</button>
+        <button class="quiz-opt" onclick="checkQuiz(this, false, 'q2-fb')">ReLU</button>
+        <button class="quiz-opt" onclick="checkQuiz(this, false, 'q2-fb')">Layer</button>
+        <div class="quiz-feedback" id="q2-fb"></div>
+      </div>
+
+      <div class="complete-bar">
+        <span>অধ্যায় ২ সমাপ্ত করেছেন?</span>
+        <button class="btn-complete" id="btn-ch-2" onclick="toggleChapter(2)">✔ অধ্যায় ২ সম্পন্ন হিসেবে চিহ্নিত করুন</button>
+      </div>
+    </section>
+
+    <!-- ==================== CHAPTER 3 ==================== -->
+    <section class="chapter-card" id="chapter-3">
+      <div class="chapter-header">
+        <div class="chapter-meta">
+          <span class="tag">Topic 003</span>
+          <span class="tag teal">Related Course: Intro to AI</span>
+          <span class="tag gold">আনুমানিক সময়: ৩০–৩৫ মিনিট</span>
+        </div>
+        <h2 class="ch-title">অধ্যায় ৩: জেনারেটিভ এআই এবং লার্জ ল্যাঙ্গুয়েজ মডেল (Generative AI and Large Language Models)</h2>
+      </div>
+
+      <div class="disclaimer-quote">
+        এগুলো স্বতন্ত্র নোট। এগুলো 365 Data Science কোর্স থেকে লেখা হয়নি এবং উক্ত কোর্সের লেসনে কী শেখানো হয় তা বর্ণনা করে না। <em>(Source URL: None. Not based on platform content. | Content Type: Original Topic Notes | Status: Written)</em>
+      </div>
+
+      <h3 class="sec-title">১. টপিক ওভারভিউ (Topic Overview)</h3>
+      <p><strong>Generative AI (জেনারেটিভ এআই)</strong> নতুন কনটেন্ট তৈরি করে—যেমন টেক্সট, ছবি, অডিও বা কোড। আর <strong>Large language model (LLM)</strong> হলো সেই ধরন যা বেশিরভাগ এআই চ্যাটবটকে শক্তি জোগায়।</p>
+      <p>একটি LLM সাধারণ সার্চের মতো উত্তর খুঁজে বের করে না। এটি <strong>সম্ভাব্য টেক্সট অনুমান করে (predicts likely text)</strong>। এই একটি ধারণাই ব্যাখ্যা করে কেন এটি এত কার্যকর এবং কেন এটি মাঝে মাঝে মনগড়া তথ্য বানায়।</p>
+
+      <h3 class="sec-title">২. শিখন উদ্দেশ্য (Learning Objectives)</h3>
+      <p>এই টপিকটি অধ্যয়ন করার পর আপনি যা করতে পারবেন:</p>
+      <ul>
+        <li>Generative AI থেকে Predictive AI আলাদা করতে পারবেন।</li>
+        <li>একটি LLM কী করে তা ব্যাখ্যা করতে পারবেন।</li>
+        <li>Tokens এবং Context windows ব্যাখ্যা করতে পারবেন।</li>
+        <li>LLM কেন ভুল উত্তর তৈরি করতে পারে তা ব্যাখ্যা করতে পারবেন।</li>
+        <li>দৈনন্দিন ব্যবহারে সেই ঝুঁকি কমাতে পারবেন।</li>
+      </ul>
+
+      <h3 class="sec-title">৩. মূল ধারণা (Key Concepts)</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>ধারণা (Concept)</th>
+              <th>এর অর্থ কী (What it means)</th>
+              <th>কেন এটি গুরুত্বপূর্ণ (Why it matters)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Generative AI</strong></td>
+              <td>নতুন কনটেন্ট তৈরি করে এমন এআই</td>
+              <td>খসড়া লেখা, ছবি ও কোডের জন্য ব্যবহৃত হয়</td>
+            </tr>
+            <tr>
+              <td><strong>Large language model</strong></td>
+              <td>বিশাল পরিমাণ টেক্সটের ওপর প্রশিক্ষণপ্রাপ্ত মডেল</td>
+              <td>বেশিরভাগ চ্যাটবটের পেছনের মূল ইঞ্জিন</td>
+            </tr>
+            <tr>
+              <td><strong>Token</strong></td>
+              <td>টেক্সটের একটি ছোট অংশ যা মডেল প্রসেস করে</td>
+              <td>খরচ এবং দৈর্ঘ্যের সীমাকে প্রভাবিত করে</td>
+            </tr>
+            <tr>
+              <td><strong>Context window</strong></td>
+              <td>মডেল একসাথে কতটুকু টেক্সট বিবেচনা করতে পারে</td>
+              <td>খুব দীর্ঘ ইনপুট এতে নাও ধরতে পারে</td>
+            </tr>
+            <tr>
+              <td><strong>Hallucination</strong></td>
+              <td>আত্মবিশ্বাসী কিন্তু মিথ্যা বা ভুল আউটপুট</td>
+              <td>দৈনন্দিন ব্যবহারে প্রধান ঝুঁকি</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="sec-title">৪. বিস্তারিত ব্যাখ্যা (Detailed Explanation)</h3>
+      <h4 class="sub-title">পূর্বাভাস এবং তৈরি করা (Predicting and generating)</h4>
+      <p>Predictive AI একটি লেবেল বা সংখ্যা দেয়, যেমন "এই ইমেইলটি স্প্যাম"। Generative AI নতুন কনটেন্ট তৈরি করে, যেমন ওই ইমেইলের একটি খসড়া উত্তর।</p>
+
+      <h4 class="sub-title">একটি LLM কীভাবে টেক্সট তৈরি করে (How an LLM produces text)</h4>
+      <p>ট্রেইনিংয়ের সময় মডেলটি বিশাল পরিমাণ টেক্সট দেখে এবং শেখে কোন শব্দের পর কোন শব্দ আসার প্রবণতা থাকে। আপনি প্রশ্ন করলে এটি এক-একটি টোকেন (one token at a time) করে উত্তর তৈরি করে—প্রতিবারই আগের সবকিছুর ওপর ভিত্তি করে সম্ভাব্য পরবর্তী অংশটি বেছে নেয়।</p>
+      <p>এটি ফোনের কিবোর্ডে শব্দের সাজেশনের মতো, তবে অনেক বেশি সক্ষম। একটি আধুনিক LLM দীর্ঘ কনটেক্সট, টোন এবং কাঠামো অনুসরণ করতে পারে।</p>
+
+      <h4 class="sub-title">টোকেন (Tokens)</h4>
+      <p>মডেল টেক্সটকে টোকেনে ভাগ করে, যা পুরো শব্দ বা শব্দের অংশ হতে পারে। ইংরেজির ক্ষেত্রে একটি সাধারণ আনুমানিক হিসাব হলো <strong>১,০০০ টোকেন মানে প্রায় ৭৫০টি শব্দ</strong>। প্রকৃত সংখ্যা মডেল ও ভাষাভেদে ভিন্ন হয়।</p>
+      <p>দুটি কারণে টোকেন গুরুত্বপূর্ণ: অনেক এআই সার্ভিস টোকেন অনুযায়ী চার্জ করে, এবং প্রতিটি মডেলের একসাথে কতগুলো টোকেন সামলাতে পারবে তার সীমা থাকে।</p>
+
+      <h4 class="sub-title">কনটেক্সট উইন্ডো (Context window)</h4>
+      <p>কনটেক্সট উইন্ডো হলো একটি কথোপকথনের জন্য মডেলের ওয়ার্কিং মেমোরি। এতে আপনার মেসেজ এবং তার উত্তর অন্তর্ভুক্ত থাকে। এর বাইরের কিছু উত্তরের ওপর প্রভাব ফেলতে পারে না। খুব দীর্ঘ চ্যাটে আগের বিস্তারিত তথ্য হারিয়ে যেতে পারে।</p>
+
+      <h4 class="sub-title">কেন হ্যালুসিনেশন ঘটে (Why hallucinations happen)</h4>
+      <p>একটি LLM সম্ভাব্য টেক্সট তৈরি করতে চায়, আর সম্ভাব্য টেক্সট সবসময় সত্য হয় না। এটি এমন রেফারেন্স, তারিখ বা পরিসংখ্যান বানিয়ে ফেলতে পারে যা দেখতে সঠিক মনে হয়। এটি করার সময় কোনো সন্দেহের ইঙ্গিতও না দিতে পারে।</p>
+      <p>নিখুঁত সংখ্যা, উদ্ধৃতি, উৎস বা সাম্প্রতিক ঘটনা চাইলে ঝুঁকি বেশি থাকে। ডকুমেন্ট বা সার্চের সাথে যুক্ত টুলগুলো এই ঝুঁকি কমাতে পারে, কিন্তু পুরোপুরি দূর করতে পারে না।</p>
+
+      <h4 class="sub-title">জ্ঞানের সময়সীমা (Knowledge cut-off)</h4>
+      <p>মডেল একটি নির্দিষ্ট তারিখ পর্যন্ত ডেটা থেকে শেখে। লাইভ তথ্যের সাথে যুক্ত না থাকলে পরের ঘটনা সম্পর্কে এটি জানবে না।</p>
+
+      <h3 class="sec-title">৫. ব্যবহারিক উদাহরণ (Practical Examples)</h3>
+      <div class="callout example">
+        <span class="callout-title">📌 উদাহরণ: ক্লায়েন্ট সারসংক্ষেপের জন্য চ্যাটবট ব্যবহার (Using a chatbot for a client summary)</span>
+        <ul>
+          <li><strong>পরিস্থিতি (Situation):</strong> একজন কনসালট্যান্টের কাছে একটি দীর্ঘ রিপোর্ট আছে এবং এক পৃষ্ঠার সারসংক্ষেপ প্রয়োজন।</li>
+          <li><strong>সমস্যা (Problem):</strong> হাতে লিখতে কয়েক ঘণ্টা সময় লাগে।</li>
+          <li><strong>পদ্ধতি (Approach):</strong> তিনি একটি অনুমোদিত ও অ-গোপনীয় সংস্করণ পেস্ট করেন এবং পাঁচটি মূল পয়েন্টসহ সারসংক্ষেপ চান।</li>
+          <li><strong>ফলাফল (Result):</strong> খসড়াটি দ্রুত তৈরি হয়, কিন্তু একটি সংখ্যা ভুল থাকে। কনসালট্যান্ট মূল রিপোর্টের সাথে মিলিয়ে দেখার সময় তা ধরতে পারেন।</li>
+          <li><strong>শিক্ষা (Lesson):</strong> সময় বাঁচাতে প্রথম খসড়া ব্যবহার করুন, এবং গুরুত্বপূর্ণ প্রতিটি তথ্য যাচাই করুন।</li>
+        </ul>
+      </div>
+
+      <h3 class="sec-title">৬. ধাপে ধাপে প্রক্রিয়া (Step-by-Step Process)</h3>
+      <p>তথ্যভিত্তিক কাজে LLM ব্যবহারের ৫টি ধাপ:</p>
+      <ol>
+        <li><strong>সম্ভব হলে সোর্স টেক্সট দিন (Give the source text where you can):</strong> এটি অনুমান কমায়।</li>
+        <li><strong>কেবল ওই টেক্সটই ব্যবহার করতে বলুন (Ask it to use only that text):</strong> এটি টপিকের ভেতর রাখে।</li>
+        <li><strong>সমর্থনকারী লাইনটি উদ্ধৃত করতে বলুন (Ask it to quote the supporting line):</strong> এতে যাচাই দ্রুত হয়।</li>
+        <li><strong>নাম, সংখ্যা ও রেফারেন্স পরীক্ষা করুন (Check names, numbers and references):</strong> এগুলো সাধারণ ব্যর্থতার জায়গা।</li>
+        <li><strong>ফলাফলের দায়িত্ব নিন (Take responsibility for the result):</strong> টুলটি এর জবাবদিহি করতে পারে না।</li>
+      </ol>
+
+      <h3 class="sec-title">৭. গুরুত্বপূর্ণ সূত্রাবলি ও টোকেন ক্যালকুলেটর (Important Formulas)</h3>
+      <div class="callout formula">
+        <span class="callout-title">📐 ইংরেজির জন্য আনুমানিক টোকেন হিসাব (Rough token estimate for English)</span>
+        <p><strong>Tokens ≈ words ÷ 0.75</strong></p>
+        <p><strong>কষে দেওয়া উদাহরণ (Worked example):</strong> ১,৫০০ শব্দের একটি আর্টিকেল।<br>
+        1,500 ÷ 0.75 = প্রায় <strong>2,000 tokens</strong> (এটি একটি সাধারণ নিয়ম বা rule of thumb, নিখুঁত গণনা নয়)।</p>
+      </div>
+
+      <!-- Interactive Token Calculator -->
+      <div class="calc-box">
+        <strong>🧮 ইন্টারঅ্যাকটিভ টোকেন ক্যালকুলেটর (ইংরেজি শব্দের সংখ্যা লিখুন):</strong>
+        <div class="calc-grid">
+          <div>
+            <label>ইংরেজি শব্দের সংখ্যা (Word Count)</label>
+            <input type="number" id="tok-words" value="1500" min="0" oninput="calcTokens()">
+          </div>
+        </div>
+        <div class="calc-result" id="tok-res">আনুমানিক টোকেন: 1500 ÷ 0.75 = 2000 tokens</div>
+      </div>
+
+      <h3 class="sec-title">৮. গুরুত্বপূর্ণ পরিভাষা (Important Terminology)</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>পরিভাষা (Term)</th>
+              <th>সহজ অর্থ (Simple Meaning)</th>
+              <th>উদাহরণ (Example)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Prompt</strong></td>
+              <td>আপনি মডেলকে যা জিজ্ঞেস করেন বা করতে বলেন</td>
+              <td>"Summarise this report"</td>
+            </tr>
+            <tr>
+              <td><strong>Completion</strong></td>
+              <td>মডেলের দেওয়া উত্তর</td>
+              <td>সারসংক্ষেপটি (The summary)</td>
+            </tr>
+            <tr>
+              <td><strong>Transformer</strong></td>
+              <td>বেশিরভাগ LLM-এ ব্যবহৃত নিউরাল নেটওয়ার্ক ডিজাইন</td>
+              <td>আধুনিক চ্যাটবটের ভিত্তি</td>
+            </tr>
+            <tr>
+              <td><strong>Temperature</strong></td>
+              <td>আউটপুট কতটা বৈচিত্র্যময় হবে তার সেটিং</td>
+              <td>তথ্যের জন্য কম, আইডিয়ার জন্য বেশি</td>
+            </tr>
+            <tr>
+              <td><strong>Multimodal</strong></td>
+              <td>টেক্সটের চেয়েও বেশি কিছু সামলাতে সক্ষম</td>
+              <td>একটি ছবি ও একটি প্রশ্ন একসাথে পড়া</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="sec-title">৯. সাধারণ ভুলসমূহ (Common Mistakes)</h3>
+      <ul>
+        <li><strong>চ্যাটবটকে ফ্যাক্ট ডেটাবেজ মনে করা:</strong> গুরুত্বপূর্ণ তথ্য যাচাই করুন।</li>
+        <li><strong>বানানো রেফারেন্স বিশ্বাস করা:</strong> উৎসের অস্তিত্ব নিশ্চিত করুন।</li>
+        <li><strong>গোপনীয় ডেটা পেস্ট করা:</strong> আগে আপনার প্রতিষ্ঠানের নীতিমালা ও টুলের শর্তাবলি পরীক্ষা করুন।</li>
+        <li><strong>এটি সাম্প্রতিক ঘটনা জানে বলে ধরে নেওয়া:</strong> লাইভ অ্যাক্সেস আছে কি না পরীক্ষা করুন।</li>
+        <li><strong>অস্পষ্ট প্রম্পট ব্যবহার করা:</strong> স্পষ্ট নির্দেশনা ভালো ফলাফল দেয়।</li>
+      </ul>
+
+      <h3 class="sec-title">১০. বাস্তব জগতের প্রয়োগ (Real-World Applications)</h3>
+      <ul>
+        <li>ইমেইল ও রিপোর্টের খসড়া তৈরি।</li>
+        <li>দীর্ঘ ডকুমেন্টের সারসংক্ষেপ করা।</li>
+        <li>কোড ব্যাখ্যা করা এবং লেখা।</li>
+        <li>টেক্সট অনুবাদ করা।</li>
+        <li>কোম্পানির ডকুমেন্টের ওপর প্রশ্নের উত্তর দেওয়া।</li>
+      </ul>
+
+      <h3 class="sec-title">১১. মূল শিক্ষণীয় বিষয় (Key Takeaways)</h3>
+      <ul>
+        <li>জেনারেটিভ এআই কনটেন্ট তৈরি করে, আর LLM সম্ভাব্য টোকেন অনুমান করে টেক্সট তৈরি করে।</li>
+        <li>সম্ভাব্য টেক্সট সবসময় সত্য হয় না।</li>
+        <li>কনটেক্সট উইন্ডো মডেল কী বিবেচনা করতে পারে তা সীমিত করে।</li>
+        <li>আউটপুট পরীক্ষা করার দায়িত্ব মানুষেরই থাকে।</li>
+      </ul>
+
+      <h3 class="sec-title">১২. দ্রুত রিভিশন নোটস (Quick Revision Notes)</h3>
+      <ul>
+        <li>Predictive লেবেল দেয়। Generative নতুন কনটেন্ট দেয়।</li>
+        <li>১,০০০ টোকেন প্রায় ৭৫০টি ইংরেজি শব্দের সমান।</li>
+        <li>কনটেক্সট উইন্ডো ওয়ার্কিং মেমোরির মতো কাজ করে।</li>
+        <li>নাম, সংখ্যা এবং উৎস পরীক্ষা করুন।</li>
+      </ul>
+
+      <h3 class="sec-title">১৩. স্ব-মূল্যায়ন প্রশ্নোত্তর (Self-Assessment Questions)</h3>
+      <details class="qa-item">
+        <summary>১. জেনারেটিভ এআই কীভাবে প্রেডিক্টিভ এআই থেকে আলাদা?</summary>
+        <p>উত্তর: প্রেডিক্টিভ এআই একটি লেবেল বা সংখ্যা দেয়। জেনারেটিভ এআই নতুন কনটেন্ট তৈরি করে।</p>
+      </details>
+      <details class="qa-item">
+        <summary>২. সহজ ভাষায়, একটি LLM কীভাবে উত্তর তৈরি করে?</summary>
+        <p>উত্তর: এটি সম্ভাব্য পরবর্তী অংশ বেছে নেওয়ার মাধ্যমে এক-একটি টোকেন করে টেক্সট তৈরি করে।</p>
+      </details>
+      <details class="qa-item">
+        <summary>৩. কনটেক্সট উইন্ডো (context window) কী?</summary>
+        <p>উত্তর: মডেল একসাথে যে পরিমাণ টেক্সট বিবেচনা করতে পারে।</p>
+      </details>
+      <details class="qa-item">
+        <summary>৪. হ্যালুসিনেশন কেন ঘটে?</summary>
+        <p>উত্তর: মডেলটি সম্ভাব্য টেক্সট তৈরি করতে চায়, যা সবসময় সত্য হয় না।</p>
+      </details>
+      <details class="qa-item">
+        <summary>৫. ৩০০ শব্দের একটি ইংরেজি ইমেইলে আনুমানিক কতগুলো টোকেন থাকে?</summary>
+        <p>উত্তর: 300 ÷ 0.75 = প্রায় 400 tokens।</p>
+      </details>
+
+      <h3 class="sec-title">১৪. অতিরিক্ত শিক্ষণ নোট (Additional Learning Notes)</h3>
+      <p>উত্তরকে তথ্যনির্ভর করার একটি সাধারণ উপায় হলো <strong>Retrieval-augmented generation (RAG)</strong>। সিস্টেমটি প্রথমে বিশ্বস্ত ডকুমেন্টে প্রাসঙ্গিক অংশগুলো খুঁজে বের করে, তারপর সেখান থেকে উত্তর দেওয়ার জন্য সেগুলো মডেলকে দেয়।</p>
+
+      <h3 class="sec-title">১৫. উৎস এবং কভারেজ নোট (Source and Coverage Notes)</h3>
+      <ul>
+        <li>সাধারণ বিষয়ভিত্তিক জ্ঞান থেকে রচিত।</li>
+        <li>প্ল্যাটফর্মের কোনো লেসন, ভিডিও, ট্রান্সক্রিপ্ট, স্লাইড বা কুইজ ব্যবহার করা হয়নি।</li>
+        <li>পাবলিক কোর্সের শিরোনাম থেকে টপিকটি বেছে নেওয়া হয়েছে, তাই এটি কোর্সের প্রকৃত বিষয়বস্তুর সাথে নাও মিলতে পারে।</li>
+      </ul>
+
+      <div class="quiz-box">
+        <div class="quiz-q">🎯 তাৎক্ষণিক কুইজ (অধ্যায় ৩): বিশ্বস্ত ডকুমেন্ট থেকে প্রাসঙ্গিক অংশ খুঁজে মডেলকে দেওয়ার পদ্ধতিকে কী বলা হয়?</div>
+        <button class="quiz-opt" onclick="checkQuiz(this, false, 'q3-fb')">Temperature</button>
+        <button class="quiz-opt" onclick="checkQuiz(this, true, 'q3-fb')">Retrieval-Augmented Generation (RAG)</button>
+        <button class="quiz-opt" onclick="checkQuiz(this, false, 'q3-fb')">Hallucination</button>
+        <button class="quiz-opt" onclick="checkQuiz(this, false, 'q3-fb')">Knowledge Cut-off</button>
+        <div class="quiz-feedback" id="q3-fb"></div>
+      </div>
+
+      <div class="complete-bar">
+        <span>অধ্যায় ৩ সমাপ্ত করেছেন?</span>
+        <button class="btn-complete" id="btn-ch-3" onclick="toggleChapter(3)">✔ অধ্যায় ৩ সম্পন্ন হিসেবে চিহ্নিত করুন</button>
+      </div>
+    </section>
+
+    <!-- ==================== CHAPTER 4 ==================== -->
+    <section class="chapter-card" id="chapter-4">
+      <div class="chapter-header">
+        <div class="chapter-meta">
+          <span class="tag">Topic 004</span>
+          <span class="tag teal">Related Course: Intro to AI</span>
+          <span class="tag gold">আনুমানিক সময়: ৩০–৩৫ মিনিট</span>
+        </div>
+        <h2 class="ch-title">অধ্যায় ৪: প্রম্পটিং এবং কর্মক্ষেত্রে এআই-এর ব্যবহার (Prompting and Using AI at Work)</h2>
+      </div>
+
+      <div class="disclaimer-quote">
+        এগুলো স্বতন্ত্র নোট। এগুলো 365 Data Science কোর্স থেকে লেখা হয়নি এবং উক্ত কোর্সের লেসনে কী শেখানো হয় তা বর্ণনা করে না। <em>(Source URL: None. Not based on platform content. | Content Type: Original Topic Notes | Status: Written)</em>
+      </div>
+
+      <h3 class="sec-title">১. টপিক ওভারভিউ (Topic Overview)</h3>
+      <p>একটি <strong>Prompt (প্রম্পট)</strong> হলো সেই নির্দেশনা যা আপনি একটি এআই টুলকে দেন। ভালো প্রম্পট সাধারণত ভালো ফলাফল দেয়, এবং এই দক্ষতাটি শেখা সহজ।</p>
+      <p>বড় প্রশ্নটি হলো এআই আদৌ কোথায় সাহায্য করে। কীভাবে স্পষ্ট প্রম্পট লিখতে হয় এবং কীভাবে উপযুক্ত কাজ বেছে নিতে হয় তা এই টপিকে আলোচনা করা হয়েছে।</p>
+
+      <h3 class="sec-title">২. শিখন উদ্দেশ্য (Learning Objectives)</h3>
+      <p>এই টপিকটি অধ্যয়ন করার পর আপনি যা করতে পারবেন:</p>
+      <ul>
+        <li>পাঁচটি অংশ ব্যবহার করে একটি স্পষ্ট প্রম্পট লিখতে পারবেন।</li>
+        <li>আউটপুট পরিচালনা করতে উদাহরণ ব্যবহার করতে পারবেন।</li>
+        <li>ফলো-আপ মেসেজের মাধ্যমে ফলাফল উন্নত করতে পারবেন।</li>
+        <li>কোনো কাজ এআই-এর উপযোগী কি না তা বিচার করতে পারবেন।</li>
+        <li>একটি সহজ রিভিউ রুটিন নির্ধারণ করতে পারবেন।</li>
+      </ul>
+
+      <h3 class="sec-title">৩. মূল ধারণা (Key Concepts)</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>ধারণা (Concept)</th>
+              <th>এর অর্থ কী (What it means)</th>
+              <th>কেন এটি গুরুত্বপূর্ণ (Why it matters)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Prompt</strong></td>
+              <td>টুলটির প্রতি আপনার নির্দেশনা</td>
+              <td>ফলাফলকে আকার দেয়</td>
+            </tr>
+            <tr>
+              <td><strong>Context</strong></td>
+              <td>টুলটির যে পটভূমি জানা প্রয়োজন</td>
+              <td>অনুমান কমায়</td>
+            </tr>
+            <tr>
+              <td><strong>Few-shot prompting</strong></td>
+              <td>প্রম্পটে উদাহরণ দিয়ে দেওয়া</td>
+              <td>আপনি কোন প্যাটার্ন চান তা দেখিয়ে দেয়</td>
+            </tr>
+            <tr>
+              <td><strong>Iteration</strong></td>
+              <td>ফলো-আপের মাধ্যমে উন্নত করা</td>
+              <td>প্রথম খসড়া খুব কমই চূড়ান্ত হয়</td>
+            </tr>
+            <tr>
+              <td><strong>Human in the loop</strong></td>
+              <td>ব্যবহারের আগে একজন মানুষ রিভিউ করেন</td>
+              <td>ভুলগুলো ধরে ফেলে</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="sec-title">৪. বিস্তারিত ব্যাখ্যা (Detailed Explanation)</h3>
+      <h4 class="sub-title">পাঁচটি অংশবিশিষ্ট একটি প্রম্পট (A five-part prompt)</h4>
+      <ol>
+        <li><strong>Role (ভূমিকা):</strong> টুলটি কার মতো কাজ করবে।</li>
+        <li><strong>Task (কাজ):</strong> আপনি ঠিক কী চান।</li>
+        <li><strong>Context (প্রেক্ষাপট):</strong> পটভূমি এবং পাঠক/শ্রোতা।</li>
+        <li><strong>Format (কাঠামো):</strong> ফলাফলটি দেখতে কেমন হবে।</li>
+        <li><strong>Limits (সীমাবদ্ধতা):</strong> দৈর্ঘ্য, টোন এবং কী এড়িয়ে চলতে হবে।</li>
+      </ol>
+
+      <p><strong>দুর্বল প্রম্পট (Weak prompt):</strong></p>
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+<pre><code>Write about our service.</code></pre>
+      </div>
+
+      <p><strong>শক্তিশালী প্রম্পট (Stronger prompt):</strong></p>
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+<pre><code>You are a B2B copywriter.
+Write a 100-word introduction to our energy audit service.
+The readers are factory owners who care about cost.
+Use a direct tone and plain English.
+Do not make claims about guaranteed savings.</code></pre>
+      </div>
+      <p>শক্তিশালী প্রম্পটটি অনুমানের জন্য অনেক কম জায়গা রাখে।</p>
+
+      <h4 class="sub-title">উদাহরণ ব্যবহার করা (Using examples)</h4>
+      <p>আপনার যদি একটি নির্দিষ্ট প্যাটার্ন প্রয়োজন হয়, তবে তা দেখিয়ে দিন। আপনি যে ইনপুট ও আউটপুট চান তার একটি বা দুটি উদাহরণ দিন। টুলটি সাধারণত সেই প্যাটার্ন অনুসরণ করবে।</p>
+
+      <h4 class="sub-title">রাউন্ডে কাজ করা (Working in rounds)</h4>
+      <p>প্রথম উত্তরটিকে একটি খসড়া হিসেবে দেখুন। এরপর সুনির্দিষ্ট ফিডব্যাক দিন, যেমন <code>"Make it shorter"</code> বা <code>"Replace the second point"</code>। <code>"Make it better"</code>-এর চেয়ে সুনির্দিষ্ট ফিডব্যাক ভালো কাজ করে।</p>
+
+      <h4 class="sub-title">কোন কাজগুলো এআই-এর উপযোগী? (Which tasks suit AI?)</h4>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>ভালো মানায় (Good fit)</th>
+              <th>কঠোর রিভিউ ছাড়া অনুপযুক্ত (Poor fit without strong review)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>প্রথম খসড়া (First drafts)</td>
+              <td>চূড়ান্ত আইনি বা চিকিৎসা সিদ্ধান্ত (Final legal or medical decisions)</td>
+            </tr>
+            <tr>
+              <td>সরবরাহকৃত টেক্সটের সারসংক্ষেপ (Summaries of supplied text)</td>
+              <td>উৎস ছাড়া নিখুঁত তথ্য (Exact facts with no source)</td>
+            </tr>
+            <tr>
+              <td>পুনর্লিখন ও অনুবাদ (Rewording and translation)</td>
+              <td>সংবেদনশীল ব্যক্তিগত বিষয় (Sensitive personal matters)</td>
+            </tr>
+            <tr>
+              <td>বিকল্প নিয়ে ব্রেইনস্টর্মিং (Brainstorming options)</td>
+              <td>অননুমোদিত টুলে গোপনীয় ডেটা প্রয়োজন এমন কাজ</td>
+            </tr>
+            <tr>
+              <td>ধারণা ব্যাখ্যা করা (Explaining a concept)</td>
+              <td>যেখানে ভুল ব্যয়বহুল এবং ধরা কঠিন</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>একটি কার্যকর পরীক্ষা:</strong> আপনি কত সহজে ফলাফলটি পরীক্ষা করতে পারবেন, এবং একটি ভুলের মাশুল কত হবে? যে কাজগুলো পরীক্ষা করা সহজ এবং ঠিক করা সস্তা, এআই সেগুলোর জন্য উপযুক্ত।</p>
+
+      <h3 class="sec-title">৫. ব্যবহারিক উদাহরণ (Practical Examples)</h3>
+      <div class="callout example">
+        <span class="callout-title">📌 উদাহরণ: সাপ্তাহিক রিপোর্ট (Weekly report)</span>
+        <ul>
+          <li><strong>পরিস্থিতি (Situation):</strong> একজন ম্যানেজার নোটগুলো থেকে সাপ্তাহিক রিপোর্ট তৈরি করতে এক ঘণ্টা ব্যয় করেন।</li>
+          <li><strong>সমস্যা (Problem):</strong> কাজটি পুনরাবৃত্তিমূলক।</li>
+          <li><strong>পদ্ধতি (Approach):</strong> তিনি নির্দিষ্ট ফরম্যাটসহ একটি বারবার ব্যবহারযোগ্য প্রম্পট লেখেন এবং ওই সপ্তাহের নোট পেস্ট করেন।</li>
+          <li><strong>ফলাফল (Result):</strong> কয়েক সেকেন্ডে খসড়া তৈরি হয়, এবং ম্যানেজার তা পরীক্ষা করে নিজের বিচার-বিবেচনা যোগ করেন।</li>
+          <li><strong>শিক্ষা (Lesson):</strong> বারবার ব্যবহারযোগ্য প্রম্পট এককালীন কৌশলকে রুটিনে পরিণত করে।</li>
+        </ul>
+      </div>
+
+      <h3 class="sec-title">৬. ধাপে ধাপে প্রক্রিয়া (Step-by-Step Process)</h3>
+      <p>কোনো কাজে এআই নিয়ে আসার ৬টি ধাপ:</p>
+      <ol>
+        <li><strong>একটি পুনরাবৃত্তিমূলক কাজ বেছে নিন:</strong> ছোট পরীক্ষা বিচার করা সহজ।</li>
+        <li><strong>ডেটার নিয়ম পরীক্ষা করুন:</strong> টুলটির সাথে কী শেয়ার করা যাবে তা নিশ্চিত করুন।</li>
+        <li><strong>একটি স্পষ্ট প্রম্পট লিখুন:</strong> পাঁচটি অংশ ব্যবহার করুন।</li>
+        <li><strong>বাস্তব উদাহরণে চেষ্টা করুন:</strong> জটিল বা ব্যতিক্রমী কেসগুলো অন্তর্ভুক্ত করুন।</li>
+        <li><strong>আপনার স্বাভাবিক কাজের সাথে তুলনা করুন:</strong> সময় এবং মান পরিমাপ করুন।</li>
+        <li><strong>প্রম্পটটি সেভ করুন এবং একটি রিভিউ ধাপ নির্ধারণ করুন:</strong> এটি ফলাফলকে ধারাবাহিক রাখে।</li>
+      </ol>
+
+      <h3 class="sec-title">৭. গুরুত্বপূর্ণ পরিভাষা (Important Terminology)</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>পরিভাষা (Term)</th>
+              <th>সহজ অর্থ (Simple Meaning)</th>
+              <th>উদাহরণ (Example)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>System prompt</strong></td>
+              <td>একটি টুলের জন্য স্থায়ী নির্দেশনা</td>
+              <td>"Always answer in simple English"</td>
+            </tr>
+            <tr>
+              <td><strong>Zero-shot prompt</strong></td>
+              <td>উদাহরণ ছাড়া প্রম্পট</td>
+              <td>একটি সাধারণ অনুরোধ</td>
+            </tr>
+            <tr>
+              <td><strong>Prompt template</strong></td>
+              <td>শূন্যস্থানসহ বারবার ব্যবহারযোগ্য প্রম্পট</td>
+              <td>সাপ্তাহিক রিপোর্ট ফরম্যাট</td>
+            </tr>
+            <tr>
+              <td><strong>Automation</strong></td>
+              <td>কায়িক শ্রম ছাড়া চলে এমন ধাপ</td>
+              <td>টুলের মাধ্যমে পাঠানো দৈনিক সারসংক্ষেপ</td>
+            </tr>
+            <tr>
+              <td><strong>AI agent</strong></td>
+              <td>টুল ব্যবহার করে পদক্ষেপ নিতে পারে এমন এআই সিস্টেম</td>
+              <td>ক্যালেন্ডার পরীক্ষা করে এবং উত্তরের খসড়া লেখে</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="sec-title">৮. সাধারণ ভুলসমূহ (Common Mistakes)</h3>
+      <ul>
+        <li><strong>অস্পষ্টভাবে চাওয়া:</strong> কাজ, পাঠক এবং ফরম্যাট উল্লেখ করুন।</li>
+        <li><strong>একবার চেষ্টার পর হাল ছেড়ে দেওয়া:</strong> ফলো-আপ দিয়ে পরিমার্জন করুন।</li>
+        <li><strong>রিভিউ ছাড়া প্রকাশ করা:</strong> তথ্য এবং টোন পরীক্ষা করুন।</li>
+        <li><strong>সংবেদনশীল ডেটা শেয়ার করা:</strong> কেবল অনুমোদিত টুল ব্যবহার করুন।</li>
+        <li><strong>আপনার যে দক্ষতা গড়ে তোলা দরকার তার জন্য এআই-এর ওপর নির্ভর করা:</strong> শেখা এড়াতে নয়, বরং শেখায় সহায়তা পেতে এআই ব্যবহার করুন।</li>
+      </ul>
+
+      <h3 class="sec-title">৯. বাস্তব জগতের প্রয়োগ (Real-World Applications)</h3>
+      <ul>
+        <li><strong>Sales:</strong> রিভিউয়ের জন্য কাস্টমাইজড আউটরিচ মেসেজের খসড়া তৈরি।</li>
+        <li><strong>HR:</strong> জব ডেসক্রিপশনের প্রথম খসড়া তৈরি।</li>
+        <li><strong>Operations:</strong> নোটগুলোকে কার্যপ্রণালীতে (procedures) রূপান্তর।</li>
+        <li><strong>Finance:</strong> স্প্রেডশিট ফর্মুলা ব্যাখ্যা করা।</li>
+        <li><strong>Training:</strong> আপনার নিজস্ব উপকরণ থেকে কুইজ প্রশ্ন তৈরি।</li>
+      </ul>
+
+      <h3 class="sec-title">১০. মূল শিক্ষণীয় বিষয় (Key Takeaways)</h3>
+      <ul>
+        <li>স্পষ্ট প্রম্পটে role, task, context, format এবং limits উল্লেখ থাকে।</li>
+        <li>উদাহরণ এবং ফলো-আপ ফলাফল উন্নত করে।</li>
+        <li>যেখানে ফলাফল পরীক্ষা করা সহজ এবং ভুল সস্তা সেখানে এআই ব্যবহার করুন।</li>
+        <li>একজন মানুষই জবাবদিহির জায়গায় থাকেন।</li>
+      </ul>
+
+      <h3 class="sec-title">১১. দ্রুত রিভিশন নোটস (Quick Revision Notes)</h3>
+      <ul>
+        <li>পাঁচটি অংশ: role, task, context, format, limits।</li>
+        <li>নির্দিষ্ট প্যাটার্নের জন্য উদাহরণ দেখান।</li>
+        <li>সুনির্দিষ্ট ফিডব্যাক দিন।</li>
+        <li>ব্যবহারের আগে পরীক্ষা করুন।</li>
+      </ul>
+
+      <h3 class="sec-title">১২. স্ব-মূল্যায়ন প্রশ্নোত্তর (Self-Assessment Questions)</h3>
+      <details class="qa-item">
+        <summary>১. একটি স্পষ্ট প্রম্পটের পাঁচটি অংশের নাম বলুন।</summary>
+        <p>উত্তর: Role, task, context, format এবং limits।</p>
+      </details>
+      <details class="qa-item">
+        <summary>২. প্রম্পটে কখন উদাহরণ দেওয়া উচিত?</summary>
+        <p>উত্তর: যখন আপনার আউটপুটটি একটি নির্দিষ্ট প্যাটার্ন অনুসরণ করা প্রয়োজন।</p>
+      </details>
+      <details class="qa-item">
+        <summary>৩. "Make it better" কেন একটি দুর্বল ফিডব্যাক?</summary>
+        <p>উত্তর: এটি কী পরিবর্তন করা উচিত তা বলে না।</p>
+      </details>
+      <details class="qa-item">
+        <summary>৪. এআই-এর উপযোগী একটি কাজ এবং কঠোর রিভিউ প্রয়োজন এমন একটি কাজের নাম বলুন।</summary>
+        <p>উত্তর: প্রথম খসড়া তৈরি এআই-এর সাথে ভালো মানায়। চূড়ান্ত আইনি সিদ্ধান্তের জন্য কঠোর রিভিউ প্রয়োজন।</p>
+      </details>
+      <details class="qa-item">
+        <summary>৫. কোনো কাজের উপযোগিতা বিচার করতে কোন দুটি প্রশ্ন সাহায্য করে?</summary>
+        <p>উত্তর: আপনি কত সহজে ফলাফলটি পরীক্ষা করতে পারবেন, এবং একটি ভুলের মাশুল কত হবে?</p>
+      </details>
+
+      <h3 class="sec-title">১৩. অতিরিক্ত শিক্ষণ নোট (Additional Learning Notes)</h3>
+      <p>প্রম্পটিং দক্ষতা সাহায্য করে, তবে এর সীমা আছে। কোনো প্রম্পটই এমন তথ্যের ক্ষেত্রে টুলকে নির্ভরযোগ্য করতে পারে না যা তার কাছে নেই। চতুর শব্দচয়নের চেয়ে সঠিক সোর্স ম্যাটেরিয়াল দেওয়া প্রায়ই বেশি সাহায্য করে।</p>
+
+      <h3 class="sec-title">১৪. উৎস এবং কভারেজ নোট (Source and Coverage Notes)</h3>
+      <ul>
+        <li>সাধারণ বিষয়ভিত্তিক জ্ঞান থেকে রচিত।</li>
+        <li>প্ল্যাটফর্মের কোনো লেসন, ভিডিও, ট্রান্সক্রিপ্ট, স্লাইড বা কুইজ ব্যবহার করা হয়নি।</li>
+        <li>প্রম্পট উদাহরণগুলো মৌলিক চিত্রায়ন।</li>
+        <li>পাবলিক কোর্সের শিরোনাম থেকে টপিকটি বেছে নেওয়া হয়েছে, তাই এটি কোর্সের প্রকৃত বিষয়বস্তুর সাথে নাও মিলতে পারে।</li>
+      </ul>
+
+      <div class="quiz-box">
+        <div class="quiz-q">🎯 তাৎক্ষণিক কুইজ (অধ্যায় ৪): প্রম্পটের ভেতর এক বা একাধিক উদাহরণ দিয়ে প্যাটার্ন দেখিয়ে দেওয়াকে কী বলে?</div>
+        <button class="quiz-opt" onclick="checkQuiz(this, false, 'q4-fb')">Zero-shot prompting</button>
+        <button class="quiz-opt" onclick="checkQuiz(this, true, 'q4-fb')">Few-shot prompting</button>
+        <button class="quiz-opt" onclick="checkQuiz(this, false, 'q4-fb')">System prompting</button>
+        <button class="quiz-opt" onclick="checkQuiz(this, false, 'q4-fb')">Automation</button>
+        <div class="quiz-feedback" id="q4-fb"></div>
+      </div>
+
+      <div class="complete-bar">
+        <span>অধ্যায় ৪ সমাপ্ত করেছেন?</span>
+        <button class="btn-complete" id="btn-ch-4" onclick="toggleChapter(4)">✔ অধ্যায় ৪ সম্পন্ন হিসেবে চিহ্নিত করুন</button>
+      </div>
+    </section>
+
+    <!-- ==================== CHAPTER 5 ==================== -->
+    <section class="chapter-card" id="chapter-5">
+      <div class="chapter-header">
+        <div class="chapter-meta">
+          <span class="tag">Topic 005</span>
+          <span class="tag teal">Related Course: Intro to AI</span>
+          <span class="tag gold">আনুমানিক সময়: ৩০–৩৫ মিনিট</span>
+        </div>
+        <h2 class="ch-title">অধ্যায় ৫: এআই-এর ঝুঁকি এবং দায়িত্বশীল ব্যবহার (AI Risks and Responsible Use)</h2>
+      </div>
+
+      <div class="disclaimer-quote">
+        এগুলো স্বতন্ত্র নোট। এগুলো 365 Data Science কোর্স থেকে লেখা হয়নি এবং উক্ত কোর্সের লেসনে কী শেখানো হয় তা বর্ণনা করে না। <em>(Source URL: None. Not based on platform content. | Content Type: Original Topic Notes | Status: Written)</em>
+      </div>
+
+      <h3 class="sec-title">১. টপিক ওভারভিউ (Topic Overview)</h3>
+      <p>এআই সময় বাঁচাতে পারে এবং সিদ্ধান্ত উন্নত করতে পারে, কিন্তু এটি ক্ষতির কারণও হতে পারে। এটি মানুষের সাথে অন্যায্য আচরণ করতে পারে, ব্যক্তিগত ডেটা উন্মোচন করতে পারে বা মিথ্যা তথ্য ছড়াতে পারে।</p>
+      <p>দায়িত্বশীল ব্যবহার মানে এআই এড়িয়ে চলা নয়। এর অর্থ ঝুঁকিগুলো জানা এবং বিচক্ষণ যাচাই-বাছাই ব্যবস্থা রাখা।</p>
+
+      <h3 class="sec-title">২. শিখন উদ্দেশ্য (Learning Objectives)</h3>
+      <p>এই টপিকটি অধ্যয়ন করার পর আপনি যা করতে পারবেন:</p>
+      <ul>
+        <li>এআই-এর প্রধান ঝুঁকিগুলোর নাম বলতে পারবেন।</li>
+        <li>একটি এআই সিস্টেমে কীভাবে বায়াস প্রবেশ করে তা ব্যাখ্যা করতে পারবেন।</li>
+        <li>এআই টুল ব্যবহারের সময় ব্যক্তিগত ডেটা সুরক্ষিত রাখতে পারবেন।</li>
+        <li>কোনো ব্যবহারে কতটুকু মানুষের রিভিউ প্রয়োজন তা নির্ধারণ করতে পারবেন।</li>
+        <li>দেশভেদে এআই নিয়ম কেন ভিন্ন হয় তা ব্যাখ্যা করতে পারবেন।</li>
+      </ul>
+
+      <h3 class="sec-title">৩. মূল ধারণা (Key Concepts)</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>ধারণা (Concept)</th>
+              <th>এর অর্থ কী (What it means)</th>
+              <th>কেন এটি গুরুত্বপূর্ণ (Why it matters)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Bias</strong></td>
+              <td>অন্যায্যভাবে একদিকে ঝুঁকে থাকা ফলাফল</td>
+              <td>মানুষের বিভিন্ন গ্রুপের ক্ষতি করতে পারে</td>
+            </tr>
+            <tr>
+              <td><strong>Privacy</strong></td>
+              <td>ব্যক্তিগত ডেটার ওপর নিয়ন্ত্রণ</td>
+              <td>মানুষকে সুরক্ষা দেয় এবং আইনি দায়িত্ব পূরণ করে</td>
+            </tr>
+            <tr>
+              <td><strong>Transparency</strong></td>
+              <td>এআই কীভাবে ব্যবহৃত হচ্ছে সে বিষয়ে খোলামেলা থাকা</td>
+              <td>আস্থা তৈরি করে</td>
+            </tr>
+            <tr>
+              <td><strong>Accountability</strong></td>
+              <td>একজন নির্দিষ্ট ব্যক্তি বা টিম ফলাফলের জবাবদিহি করে</td>
+              <td>"এআই এটি করেছে" কোনো অজুহাত নয়</td>
+            </tr>
+            <tr>
+              <td><strong>Deepfake</strong></td>
+              <td>বাস্তবসম্মত নকল অডিও, ছবি বা ভিডিও</td>
+              <td>প্রতারণা এবং মিথ্যা দাবির জন্য ব্যবহৃত হয়</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="sec-title">৪. বিস্তারিত ব্যাখ্যা (Detailed Explanation)</h3>
+      <h4 class="sub-title">পক্ষপাত বা বায়াস (Bias)</h4>
+      <p>এআই অতীতের ডেটা থেকে শেখে, তাই এটি অতীতের অন্যায্যতা কপি করতে পারে। কোনো কোম্পানি যদি অতীতে মূলত পুরুষদের নিয়োগ দিয়ে থাকে, তবে সেই রেকর্ডের ওপর প্রশিক্ষিত নিয়োগ মডেল পুরুষদের পক্ষ নিতে পারে।</p>
+      <p>কয়েকটি পর্যায়ে বায়াস প্রবেশ করতে পারে: ডেটায় কারা আছে, ফলাফল কীভাবে লেবেল করা হয়েছে এবং সিস্টেমটি কীভাবে ব্যবহৃত হচ্ছে। একটি সংবেদনশীল ফিল্ড সরিয়ে দিলেই সবসময় কাজ হয় না, কারণ পোস্টকোডের (postcode) মতো অন্যান্য ডেটা সেটির বিকল্প (stand in) হিসেবে কাজ করতে পারে।</p>
+
+      <h4 class="sub-title">গোপনীয়তা এবং বিশ্বস্ততা (Privacy and confidentiality)</h4>
+      <p>আপনি অনলাইন টুলে যা কিছুই টাইপ করেন তা আপনার কম্পিউটার ছেড়ে চলে যায়। প্রোভাইডার ও প্ল্যানের ওপর নির্ভর করে এটি সংরক্ষিত হতে পারে বা সার্ভিস উন্নত করতে ব্যবহৃত হতে পারে। ব্যক্তিগত ডেটা, ক্লায়েন্টের তথ্য বা ট্রেড সিক্রেট শেয়ার করার আগে সেটিংস ও শর্তাবলি পরীক্ষা করুন।</p>
+
+      <h4 class="sub-title">মিথ্যা কনটেন্ট এবং অপব্যবহার (False content and misuse)</h4>
+      <p>এআই দ্রুত মিথ্যা টেক্সট ও বাস্তবসম্মত নকল তৈরি করতে পারে। প্রতারকরা ক্লোন করা ভয়েস ব্যবহার করে পরিবারের সদস্য বা ম্যানেজারের ছদ্মবেশ ধরতে পারে। অস্বাভাবিক অনুরোধের ক্ষেত্রে—বিশেষ করে অর্থ সংক্রান্ত—আপনার আগে থেকেই বিশ্বস্ত আলাদা একটি চ্যানেলের মাধ্যমে নিশ্চিত করুন।</p>
+
+      <h4 class="sub-title">অতিরিক্ত নির্ভরশীলতা (Over-reliance)</h4>
+      <p>মানুষ স্বয়ংক্রিয় আউটপুট ভুল হলেও তা বিশ্বাস করার প্রবণতা দেখায়। একে <strong>automation bias</strong> বলে। একজন তাড়াহুড়োয় থাকা রিভিউয়ার হয়তো সবকিছুই অনুমোদন করে দেবেন। রিভিউয়ের জন্য প্রকৃত সময় এবং "না" বলার প্রকৃত ক্ষমতা প্রয়োজন।</p>
+
+      <h4 class="sub-title">চাকরি এবং দক্ষতা (Jobs and skills)</h4>
+      <p>এআই পুরো চাকরি সরিয়ে দেওয়ার চেয়ে কাজের ধরন (tasks) বেশি পরিবর্তন করে, তবে এর প্রভাব ক্ষেত্রভেদে ভিন্ন হয় এবং এখনো বিতর্কিত। বিচার-বিবেচনা, যাচাইকরণ এবং যোগাযোগের দক্ষতাগুলো কার্যকর থাকার সম্ভাবনা রয়েছে।</p>
+
+      <h4 class="sub-title">নিয়মকানুন এবং বিধিমালা (Rules and regulation)</h4>
+      <p>দেশভেদে এআই নিয়ম ভিন্ন হয় এবং দ্রুত পরিবর্তিত হয়। যেমন, <strong>EU AI Act</strong> ঝুঁকির মাত্রার ওপর ভিত্তি করে দায়িত্ব নির্ধারণ করে। গুরুতর ব্যবহারের আগে আপনার ক্ষেত্রে প্রযোজ্য নিয়মগুলো পরীক্ষা করুন এবং পেশাদার পরামর্শ নিন।</p>
+
+      <h4 class="sub-title">ঝুঁকি-ভিত্তিক রিভিউ (Risk-based review)</h4>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>ঝুঁকির মাত্রা (Risk level)</th>
+              <th>উদাহরণ (Example)</th>
+              <th>প্রস্তাবিত নিয়ন্ত্রণ (Suggested control)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Low (কম)</strong></td>
+              <td>নামের ব্রেইনস্টর্মিং</td>
+              <td>দ্রুত ব্যক্তিগত যাচাই (Quick personal check)</td>
+            </tr>
+            <tr>
+              <td><strong>Medium (মাঝারি)</strong></td>
+              <td>ক্লায়েন্ট ইমেইলের খসড়া</td>
+              <td>পাঠানোর আগে মানুষের রিভিউ</td>
+            </tr>
+            <tr>
+              <td><strong>High (উচ্চ)</strong></td>
+              <td>নিয়োগ, ঋণ বা চিকিৎসা সিদ্ধান্ত</td>
+              <td>টেস্টিং, রেকর্ডকৃত মানব সিদ্ধান্ত, আইনি পরামর্শ</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="sec-title">৫. ব্যবহারিক উদাহরণ (Practical Examples)</h3>
+      <div class="callout example">
+        <span class="callout-title">📌 উদাহরণ: চাকরির আবেদন বাছাই করা (Screening job applications)</span>
+        <ul>
+          <li><strong>পরিস্থিতি (Situation):</strong> একটি কোম্পানি হাজার হাজার সিভি র‍্যাঙ্ক করতে এআই চায়।</li>
+          <li><strong>সমস্যা (Problem):</strong> অতীতের নিয়োগ ডেটায় অন্যায্য প্যাটার্ন প্রতিফলিত হতে পারে।</li>
+          <li><strong>পদ্ধতি (Approach):</strong> টিম বিভিন্ন গ্রুপের ওপর ফলাফল পরীক্ষা করে, আবেদনকারীদের জানায় যে এআই ব্যবহৃত হচ্ছে, সিদ্ধান্তের জন্য মানুষকে দায়ী রাখে এবং আইনি পরামর্শ নেয়।</li>
+          <li><strong>ফলাফল (Result):</strong> টেস্টিংয়ে একটি গ্রুপের জন্য সমস্যা ধরা পড়ে, তাই ব্যবহারের আগেই টুলটি পরিবর্তন করা হয়।</li>
+          <li><strong>শিক্ষা (Lesson):</strong> উচ্চ-ঝুঁকির ব্যবহারে কেবল পরে ক্ষমা চাওয়া নয়, বরং চালুর আগেই টেস্টিং প্রয়োজন।</li>
+        </ul>
+      </div>
+
+      <h3 class="sec-title">৬. ধাপে ধাপে প্রক্রিয়া (Step-by-Step Process)</h3>
+      <p>পরিকল্পিত এআই ব্যবহার রিভিউ করার ৬টি ধাপ:</p>
+      <ol>
+        <li><strong>ব্যবহারটি বর্ণনা করুন:</strong> কারা প্রভাবিত হবে তা স্পষ্ট করুন।</li>
+        <li><strong>ঝুঁকির মাত্রা নির্ধারণ করুন:</strong> ভুল হলে কী ঘটবে তা ভাবুন।</li>
+        <li><strong>ডেটা পরীক্ষা করুন:</strong> কী শেয়ার করা হচ্ছে এবং তা শেয়ার করার অনুমতি আছে কি না নিশ্চিত করুন।</li>
+        <li><strong>ভুল ও বায়াসের জন্য পরীক্ষা করুন:</strong> বাস্তবসম্মত কেস ব্যবহার করুন।</li>
+        <li><strong>একজন দায়িত্বশীল ব্যক্তি (owner) নির্ধারণ করুন:</strong> কাউকে অবশ্যই জবাবদিহি করতে হবে।</li>
+        <li><strong>ফলাফল পর্যবেক্ষণ করুন:</strong> চালুর পরেও সমস্যা দেখা দিতে পারে।</li>
+      </ol>
+
+      <h3 class="sec-title">৭. গুরুত্বপূর্ণ পরিভাষা (Important Terminology)</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>পরিভাষা (Term)</th>
+              <th>সহজ অর্থ (Simple Meaning)</th>
+              <th>উদাহরণ (Example)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Automation bias</strong></td>
+              <td>যন্ত্রকে অতিরিক্ত বিশ্বাস করা</td>
+              <td>প্রতিটি সাজেশন অনুমোদন করা</td>
+            </tr>
+            <tr>
+              <td><strong>Proxy variable</strong></td>
+              <td>একটি ফিল্ড যা অন্যটির প্রতিনিধিত্ব করে</td>
+              <td>পোস্টকোড যা পটভূমি প্রতিফলিত করে</td>
+            </tr>
+            <tr>
+              <td><strong>Explainability</strong></td>
+              <td>কেন একটি ফলাফল ঘটল তা বলতে পারা</td>
+              <td>ঋণের সিদ্ধান্তের কারণ দেখানো</td>
+            </tr>
+            <tr>
+              <td><strong>Human oversight</strong></td>
+              <td>মানুষ এআই-কে রিভিউ ও বাতিল করতে পারে</td>
+              <td>ম্যানেজার প্রতিটি সিদ্ধান্ত পরীক্ষা করেন</td>
+            </tr>
+            <tr>
+              <td><strong>Data retention</strong></td>
+              <td>ডেটা কতদিন সংরক্ষিত থাকে</td>
+              <td>চ্যাট হিস্ট্রি ৩০ দিন রাখা</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="sec-title">৮. সাধারণ ভুলসমূহ (Common Mistakes)</h3>
+      <ul>
+        <li><strong>এআই নিরপেক্ষ বলে ধরে নেওয়া:</strong> এটি তার ডেটা ও ডিজাইন প্রতিফলিত করে।</li>
+        <li><strong>রিভিউকে আনুষ্ঠানিকতা মনে করা:</strong> রিভিউয়ারদের সময় ও ক্ষমতা প্রয়োজন।</li>
+        <li><strong>টুলে ব্যক্তিগত ডেটা পেস্ট করা:</strong> আগে নীতিমালা পরীক্ষা করুন।</li>
+        <li><strong>এক দেশের নিয়ম সব জায়গায় প্রযোজ্য ভাবা:</strong> স্থানীয়ভাবে পরীক্ষা করুন।</li>
+        <li><strong>যেখানে মানুষ সততা আশা করে সেখানে এআই লুকানো:</strong> এ বিষয়ে খোলামেলা থাকুন।</li>
+      </ul>
+
+      <h3 class="sec-title">৯. বাস্তব জগতের প্রয়োগ (Real-World Applications)</h3>
+      <ul>
+        <li>HR টিম নিয়োগ টুলে বায়াস পরীক্ষা করে।</li>
+        <li>ব্যাংক স্বয়ংক্রিয় সিদ্ধান্তের ব্যাখ্যাসহ রেকর্ড রাখে।</li>
+        <li>কোম্পানি অনুমোদিত এআই টুলের নীতিমালা নির্ধারণ করে।</li>
+        <li>ফাইন্যান্স টিম দ্বিতীয় চ্যানেলের মাধ্যমে পেমেন্ট অনুরোধ যাচাই করে।</li>
+      </ul>
+
+      <h3 class="sec-title">১০. মূল শিক্ষণীয় বিষয় (Key Takeaways)</h3>
+      <ul>
+        <li>এআই তার ডেটার অন্যায্যতা পুনরাবৃত্তি করতে পারে।</li>
+        <li>আপনি কী শেয়ার করছেন সে বিষয়ে সতর্ক থাকুন।</li>
+        <li>ঝুঁকির আকারের সাথে রিভিউয়ের পরিমাণ মেলান।</li>
+        <li>একজন মানুষকে অবশ্যই জবাবদিহির জায়গায় থাকতে হবে।</li>
+        <li>আইনি ও কমপ্লায়েন্স সিদ্ধান্তে পেশাদার পরামর্শ প্রয়োজন।</li>
+      </ul>
+
+      <h3 class="sec-title">১১. দ্রুত রিভিশন নোটস (Quick Revision Notes)</h3>
+      <ul>
+        <li>প্রধান ঝুঁকি: bias, privacy, false content, over-reliance।</li>
+        <li>সংবেদনশীল ফিল্ড সরালেই বায়াস দূর নাও হতে পারে।</li>
+        <li>অস্বাভাবিক অর্থের অনুরোধ বিশ্বস্ত চ্যানেলে যাচাই করুন।</li>
+        <li>Low, medium ও high ঝুঁকির জন্য ভিন্ন যাচাই প্রয়োজন।</li>
+      </ul>
+
+      <h3 class="sec-title">১২. স্ব-মূল্যায়ন প্রশ্নোত্তর (Self-Assessment Questions)</h3>
+      <details class="qa-item">
+        <summary>১. একটি নিয়োগ মডেল কীভাবে বায়াসড হতে পারে?</summary>
+        <p>উত্তর: এটি অতীতের নিয়োগ রেকর্ড থেকে অন্যায্য প্যাটার্ন শিখতে পারে।</p>
+      </details>
+      <details class="qa-item">
+        <summary>২. অটোমেশন বায়াস (automation bias) কী?</summary>
+        <p>উত্তর: স্বয়ংক্রিয় আউটপুট ভুল হলেও সেটিকে অতিরিক্ত বিশ্বাস করা।</p>
+      </details>
+      <details class="qa-item">
+        <summary>৩. সংবেদনশীল ফিল্ড সরিয়ে দিলেও কেন বায়াস দূর হতে ব্যর্থ হতে পারে?</summary>
+        <p>উত্তর: পোস্টকোডের মতো অন্যান্য ফিল্ড বিকল্প (stand-ins) হিসেবে কাজ করতে পারে।</p>
+      </details>
+      <details class="qa-item">
+        <summary>৪. একজন "ম্যানেজার" ফোন করে জরুরি পেমেন্ট চাইলে আপনার কী করা উচিত?</summary>
+        <p>উত্তর: পেমেন্ট করার আগে আপনার আগে থেকেই বিশ্বস্ত আলাদা একটি চ্যানেলের মাধ্যমে নিশ্চিত করুন।</p>
+      </details>
+      <details class="qa-item">
+        <summary>৫. ঋণ প্রদানের সিদ্ধান্তে কোন মাত্রার রিভিউ উপযুক্ত?</summary>
+        <p>উত্তর: High (উচ্চ): টেস্টিং, রেকর্ডকৃত মানব সিদ্ধান্ত এবং আইনি পরামর্শ।</p>
+      </details>
+
+      <h3 class="sec-title">১৩. অতিরিক্ত শিক্ষণ নোট (Additional Learning Notes)</h3>
+      <p>আইন এবং প্রোভাইডারদের শর্তাবলি প্রায়ই পরিবর্তিত হয়। এখানে দেওয়া উদাহরণগুলোকে সাধারণ শিক্ষা হিসেবে বিবেচনা করুন। এগুলো আইনি পরামর্শ নয়, এবং আপনার দেশের বর্তমান নিয়মকানুন আপনার পরীক্ষা করা উচিত।</p>
+
+      <h3 class="sec-title">১৪. উৎস এবং কভারেজ নোট (Source and Coverage Notes)</h3>
+      <ul>
+        <li>সাধারণ বিষয়ভিত্তিক জ্ঞান থেকে রচিত।</li>
+        <li>প্ল্যাটফর্মের কোনো লেসন, ভিডিও, ট্রান্সক্রিপ্ট, স্লাইড বা কুইজ ব্যবহার করা হয়নি।</li>
+        <li>পাবলিক কোর্সের শিরোনাম থেকে টপিকটি বেছে নেওয়া হয়েছে, তাই এটি কোর্সের প্রকৃত বিষয়বস্তুর সাথে নাও মিলতে পারে।</li>
+      </ul>
+
+      <div class="quiz-box">
+        <div class="quiz-q">🎯 তাৎক্ষণিক কুইজ (অধ্যায় ৫): লিঙ্গ বা জাতির তথ্য সরিয়ে দেওয়ার পরও যখন পোস্টকোড সেই তথ্যের প্রতিনিধিত্ব করে, তখন পোস্টকোডকে কী বলা হয়?</div>
+        <button class="quiz-opt" onclick="checkQuiz(this, false, 'q5-fb')">Data retention</button>
+        <button class="quiz-opt" onclick="checkQuiz(this, true, 'q5-fb')">Proxy variable</button>
+        <button class="quiz-opt" onclick="checkQuiz(this, false, 'q5-fb')">Deepfake</button>
+        <button class="quiz-opt" onclick="checkQuiz(this, false, 'q5-fb')">System prompt</button>
+        <div class="quiz-feedback" id="q5-fb"></div>
+      </div>
+
+      <div class="complete-bar">
+        <span>অধ্যায় ৫ সমাপ্ত করেছেন?</span>
+        <button class="btn-complete" id="btn-ch-5" onclick="toggleChapter(5)">✔ অধ্যায় ৫ সম্পন্ন হিসেবে চিহ্নিত করুন</button>
+      </div>
+    </section>
+
+    <!-- ==================== FINAL ASSESSMENT ==================== -->
+    <section class="chapter-card" id="final-assessment">
+      <div class="chapter-header">
+        <span class="tag gold">Comprehensive Final Assessment</span>
+        <h2 class="ch-title">সমন্বিত চূড়ান্ত মূল্যায়ন (Final Assessment)</h2>
+      </div>
+      <p>বইয়ের ৫টি অধ্যায়ের মূল ধারণার ওপর ভিত্তি করে নিচের প্রশ্নগুলোর উত্তর দিয়ে আপনার প্রস্তুতি যাচাই করুন:</p>
+
+      <div class="quiz-box">
+        <div class="quiz-q">প্রশ্ন ১: বর্তমানে ব্যবহৃত সমস্ত এআই (যেমন দাবা খেলার ইঞ্জিন বা চ্যাটবট) কোন শ্রেণির অন্তর্ভুক্ত?</div>
+        <button class="quiz-opt" onclick="checkQuiz(this, true, 'fa-1')">Narrow AI (সংকীর্ণ এআই)</button>
+        <button class="quiz-opt" onclick="checkQuiz(this, false, 'fa-1')">General AI (AGI)</button>
+        <button class="quiz-opt" onclick="checkQuiz(this, false, 'fa-1')">Expert System</button>
+        <div class="quiz-feedback" id="fa-1"></div>
+      </div>
+
+      <div class="quiz-box">
+        <div class="quiz-q">প্রশ্ন ২: নেটওয়ার্কের ভুল কমানোর জন্য প্রতিটি ওয়েটকে ছোট ছোট ধাপে সমন্বয় করার পদ্ধতিকে কী বলে?</div>
+        <button class="quiz-opt" onclick="checkQuiz(this, false, 'fa-2')">Tokenization</button>
+        <button class="quiz-opt" onclick="checkQuiz(this, true, 'fa-2')">Gradient descent</button>
+        <button class="quiz-opt" onclick="checkQuiz(this, false, 'fa-2')">Context window</button>
+        <div class="quiz-feedback" id="fa-2"></div>
+      </div>
+
+      <div class="quiz-box">
+        <div class="quiz-q">প্রশ্ন ৩: ৭৫০ শব্দের একটি ইংরেজি টেক্সটে আনুমানিক কতগুলো টোকেন থাকে?</div>
+        <button class="quiz-opt" onclick="checkQuiz(this, false, 'fa-3')">প্রায় ৫০০ টোকেন</button>
+        <button class="quiz-opt" onclick="checkQuiz(this, true, 'fa-3')">প্রায় ১,০০০ টোকেন</button>
+        <button class="quiz-opt" onclick="checkQuiz(this, false, 'fa-3')">প্রায় ২,০০০ টোকেন</button>
+        <div class="quiz-feedback" id="fa-3"></div>
+      </div>
+    </section>
+
+    <!-- ==================== GLOSSARY ==================== -->
+    <section class="chapter-card" id="glossary">
+      <div class="chapter-header">
+        <span class="tag teal">25 Core Terms</span>
+        <h2 class="ch-title">পূর্ণাঙ্গ দ্বিভাষিক শব্দকোষ (Complete Glossary)</h2>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Term (পরিভাষা)</th>
+              <th>Simple Meaning (সহজ বাংলা অর্থ)</th>
+              <th>Example (উদাহরণ)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Algorithm</strong></td><td>কম্পিউটার যে ধাপগুলো অনুসরণ করে</td><td>রাস্তা খোঁজার পদ্ধতি</td></tr>
+            <tr><td><strong>Expert system</strong></td><td>লিখিত নিয়ম দিয়ে তৈরি পুরনো এআই</td><td>ত্রুটি নির্ণয় সিস্টেম</td></tr>
+            <tr><td><strong>Computer vision</strong></td><td>ছবি নিয়ে কাজ করা এআই</td><td>নম্বর প্লেট পড়া</td></tr>
+            <tr><td><strong>Natural language processing</strong></td><td>মানুষের ভাষা নিয়ে কাজ করা এআই</td><td>টেক্সট অনুবাদ</td></tr>
+            <tr><td><strong>AI winter</strong></td><td>কম আগ্রহ ও ফান্ডিংয়ের সময়কাল</td><td>বিগত দশকের মন্দা</td></tr>
+            <tr><td><strong>Parameter</strong></td><td>মডেল যে মানটি শেখে</td><td>একটি ওয়েট (Weight)</td></tr>
+            <tr><td><strong>Epoch</strong></td><td>ট্রেইনিং ডেটার মধ্য দিয়ে একবার পূর্ণ আবর্তন</td><td>সব ছবি একবার দেখা</td></tr>
+            <tr><td><strong>Backpropagation</strong></td><td>নেটওয়ার্কের পেছনে ভুলের উৎস অনুসন্ধান</td><td>কোন ওয়েট বদলাতে হবে তা খোঁজা</td></tr>
+            <tr><td><strong>Gradient descent</strong></td><td>ভুল কমাতে ধাপে ধাপে এগিয়ে যাওয়া</td><td>পাহাড় থেকে হেঁটে নামা</td></tr>
+            <tr><td><strong>GPU</strong></td><td>একসাথে অনেক হিসাব করতে পারা চিপ</td><td>ট্রেইনিংয়ে ব্যবহৃত চিপ</td></tr>
+            <tr><td><strong>Prompt</strong></td><td>আপনি মডেলকে যা করতে বলেন</td><td>"Summarise this report"</td></tr>
+            <tr><td><strong>Completion</strong></td><td>মডেলের দেওয়া উত্তর</td><td>তৈরি করা সারসংক্ষেপ</td></tr>
+            <tr><td><strong>Transformer</strong></td><td>বেশিরভাগ LLM-এ ব্যবহৃত নিউরাল নেটওয়ার্ক ডিজাইন</td><td>আধুনিক চ্যাটবটের ভিত্তি</td></tr>
+            <tr><td><strong>Temperature</strong></td><td>আউটপুট কতটা বৈচিত্র্যময় হবে তার সেটিং</td><td>তথ্যের জন্য কম, আইডিয়ার জন্য বেশি</td></tr>
+            <tr><td><strong>Multimodal</strong></td><td>টেক্সটের চেয়েও বেশি কিছু সামলাতে সক্ষম</td><td>ছবি ও প্রশ্ন একসাথে পড়া</td></tr>
+            <tr><td><strong>System prompt</strong></td><td>টুলের জন্য স্থায়ী নির্দেশনা</td><td>"Always answer in simple English"</td></tr>
+            <tr><td><strong>Zero-shot prompt</strong></td><td>উদাহরণ ছাড়া সাধারণ প্রম্পট</td><td>একটি সরাসরি অনুরোধ</td></tr>
+            <tr><td><strong>Prompt template</strong></td><td>শূন্যস্থানসহ বারবার ব্যবহারযোগ্য প্রম্পট</td><td>সাপ্তাহিক রিপোর্ট ফরম্যাট</td></tr>
+            <tr><td><strong>Automation</strong></td><td>কায়িক শ্রম ছাড়া স্বয়ংক্রিয়ভাবে চলা ধাপ</td><td>দৈনিক সারসংক্ষেপ প্রেরণ</td></tr>
+            <tr><td><strong>AI agent</strong></td><td>টুল ব্যবহার করে পদক্ষেপ নিতে পারা এআই</td><td>ক্যালেন্ডার দেখে উত্তরের খসড়া লেখা</td></tr>
+            <tr><td><strong>Automation bias</strong></td><td>যন্ত্রকে অতিরিক্ত বিশ্বাস করা</td><td>প্রতিটি সাজেশন অনুমোদন করা</td></tr>
+            <tr><td><strong>Proxy variable</strong></td><td>একটি ফিল্ড যা অন্যটির প্রতিনিধিত্ব করে</td><td>পোস্টকোড যা পটভূমি প্রকাশ করে</td></tr>
+            <tr><td><strong>Explainability</strong></td><td>কেন ফলাফল ঘটল তা বলতে পারা</td><td>ঋণের সিদ্ধান্তের কারণ দেখানো</td></tr>
+            <tr><td><strong>Human oversight</strong></td><td>মানুষ এআই-কে রিভিউ ও বাতিল করতে পারে</td><td>ম্যানেজারের প্রতিটি সিদ্ধান্ত পরীক্ষা</td></tr>
+            <tr><td><strong>Data retention</strong></td><td>ডেটা কতদিন সংরক্ষিত থাকে</td><td>চ্যাট হিস্ট্রি ৩০ দিন রাখা</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ==================== PUBLISHER FOOTER ==================== -->
+    <section class="chapter-card" id="publisher-info">
+      <div class="chapter-header">
+        <span class="tag gold">Official Publication Credits</span>
+        <h2 class="ch-title">লেখক ও প্রকাশক পরিচিতি (Author & Publisher Information)</h2>
+      </div>
+      <p><strong>Written and Published by</strong><br>
+      <strong>Ihtishamul Haque Naeem</strong><br>
+      Chairman, Seerat Academy Foundation</p>
+      <p><strong>Publishing Platform:</strong> Seerat Academy Foundation<br>
+      <strong>Website:</strong> <a href="https://seeratfoundation.com/" target="_blank" rel="noopener">https://seeratfoundation.com/</a></p>
+    </section>
+
+  </main>
+
+  <script>
+    // Progress Tracking
+    const completedChapters = new Set();
+    function toggleChapter(num) {
+      const btn = document.getElementById('btn-ch-' + num);
+      const badge = document.getElementById('badge-' + num);
+      if (completedChapters.has(num)) {
+        completedChapters.delete(num);
+        btn.classList.remove('completed');
+        btn.textContent = '✔ অধ্যায় ' + num + ' সম্পন্ন হিসেবে চিহ্নিত করুন';
+        badge.classList.remove('done');
+      } else {
+        completedChapters.add(num);
+        btn.classList.add('completed');
+        btn.textContent = '✅ অধ্যায় ' + num + ' সম্পন্ন হয়েছে';
+        badge.classList.add('done');
+      }
+      const pct = Math.round((completedChapters.size / 5) * 100);
+      document.getElementById('prog-fill').style.width = pct + '%';
+      document.getElementById('prog-text').textContent = pct + '% (' + completedChapters.size + '/5)';
+    }
+
+    // Interactive Neuron Calculator
+    function calcNeuron() {
+      const i1 = parseFloat(document.getElementById('n-i1').value) || 0;
+      const w1 = parseFloat(document.getElementById('n-w1').value) || 0;
+      const i2 = parseFloat(document.getElementById('n-i2').value) || 0;
+      const w2 = parseFloat(document.getElementById('n-w2').value) || 0;
+      const b  = parseFloat(document.getElementById('n-b').value)  || 0;
+      const out = (i1 * w1) + (i2 * w2) + b;
+      document.getElementById('neuron-res').textContent =
+        `ফলাফল (Output): (${i1} × ${w1}) + (${i2} × ${w2}) + ${b} = ${Number(out.toFixed(4))}`;
+    }
+
+    // Interactive Token Calculator
+    function calcTokens() {
+      const words = parseFloat(document.getElementById('tok-words').value) || 0;
+      const tokens = Math.round(words / 0.75);
+      document.getElementById('tok-res').textContent =
+        `আনুমানিক টোকেন: ${words} ÷ 0.75 ≈ ${tokens} tokens`;
+    }
+
+    // Copy Code
+    function copyCode(btn) {
+      const code = btn.nextElementSibling.innerText;
+      navigator.clipboard.writeText(code);
+      const old = btn.textContent;
+      btn.textContent = 'Copied!';
+      setTimeout(() => btn.textContent = old, 1500);
+    }
+
+    // Quiz Checker
+    function checkQuiz(btn, isCorrect, fbId) {
+      const parent = btn.parentElement;
+      const buttons = parent.querySelectorAll('.quiz-opt');
+      buttons.forEach(b => b.classList.remove('correct', 'wrong'));
+      const fb = document.getElementById(fbId);
+      fb.style.display = 'block';
+      if (isCorrect) {
+        btn.classList.add('correct');
+        fb.style.color = '#15803d';
+        fb.textContent = '✔ সঠিক উত্তর! চমৎকার বলেছেন।';
+      } else {
+        btn.classList.add('wrong');
+        fb.style.color = '#b91c1c';
+        fb.textContent = '✖ উত্তরটি সঠিক নয়। আবার চেষ্টা করুন।';
+      }
+    }
+
+    // Live Search Filter
+    function filterSections(query) {
+      const q = query.trim().toLowerCase();
+      const cards = document.querySelectorAll('.chapter-card');
+      cards.forEach(card => {
+        if (!q || card.innerText.toLowerCase().includes(q)) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
